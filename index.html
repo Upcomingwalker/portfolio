@@ -1,1082 +1,1571 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tanuj Sharma — Creative Developer & Future Innovator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --fg: #fff;
-      --sub: #aaa;
-      --accent: #00d4ff;
-      --accent2: #ff3d71;
-      --accent3: #7c3aed;
-      --glow: 0 0 20px rgba(0, 212, 255, 0.4);
-      --gradient: linear-gradient(135deg, #00d4ff, #7c3aed, #ff3d71);
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.1);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TANUJ SHARMA — Systems Programming & Game Engine Architecture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;1,300;1,400&family=Prata&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            void: '#080808',
+            absolute: '#000000',
+            charcoal: '#171617',
+            smoke: '#262525',
+            graphite: '#393939',
+            bone: '#fcfcfc',
+            linen: '#f3efef',
+            ash: '#d4d2d2',
+            pebble: '#b5b2b2',
+            iron: '#525252',
+            arterial: '#fe1e34',
+            crimson: '#ff0000',
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            serif: ['Playfair Display', 'ui-serif', 'Georgia', 'serif'],
+            display: ['Prata', 'ui-serif', 'Georgia', 'serif'],
+            mono: ['system-ui', '-apple-system', 'sans-serif'],
+          },
+          fontSize: {
+            'caption': ['10px', { lineHeight: '1.2', letterSpacing: '0.08em' }],
+            'body': ['14px', { lineHeight: '1.5', letterSpacing: '-0.017em' }],
+            'subheading': ['24px', { lineHeight: '1.1', letterSpacing: '-0.038em' }],
+            'heading-sm': ['32px', { lineHeight: '1.05', letterSpacing: '-0.05em' }],
+            'heading': ['42px', { lineHeight: '1.05', letterSpacing: '-0.047em' }],
+            'heading-lg': ['64px', { lineHeight: '1', letterSpacing: '-0.075em' }],
+            'display': ['80px', { lineHeight: '0.9', letterSpacing: '-0.075em' }],
+            'display-xl': ['clamp(64px, 11vw, 152px)', { lineHeight: '0.9', letterSpacing: '-0.08em' }],
+          },
+          letterSpacing: {
+            'nav-out': '0.071em',
+            'nav-out-wide': '0.308em',
+            'arch-in': '-0.08em',
+          },
+          spacing: {
+            'section': 'max(64px, 8vh)',
+            'section-lg': 'max(128px, 15vh)',
+          },
+          boxShadow: {
+            'glass-edge': 'rgba(255, 255, 255, 0.2) 0px 2px 5px 0px inset',
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+          }
+        }
+      }
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    
+  </script>
+
+  <style>
     body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: var(--bg);
-      color: var(--fg);
+      background-color: #080808;
+      color: #fcfcfc;
       overflow-x: hidden;
       cursor: none;
-    }
-
-    /* Animated Background */
-    .bg-animation {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 40% 80%, rgba(255, 61, 113, 0.1) 0%, transparent 50%);
-      animation: bgShift 20s ease-in-out infinite;
-      z-index: -2;
-    }
-    @keyframes bgShift {
-      0%, 100% { transform: scale(1) rotate(0deg); }
-      33% { transform: scale(1.1) rotate(120deg); }
-      66% { transform: scale(0.9) rotate(240deg); }
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* Custom Cursor */
-    .cursor {
-      position: fixed; width: 20px; height: 20px;
-      background: var(--accent); border-radius: 50%;
-      mix-blend-mode: difference; pointer-events: none;
-      z-index: 9999; transition: transform 0.1s ease;
+    #custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      background-color: #fe1e34;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
       transform: translate(-50%, -50%);
-    }
-    .cursor-follower {
-      position: fixed; width: 40px; height: 40px;
-      border: 2px solid var(--accent); border-radius: 50%;
-      pointer-events: none; z-index: 9998;
-      transition: all 0.3s ease; opacity: 0.5;
-      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, background-color 0.2s;
+      mix-blend-mode: difference;
     }
 
-    /* Enhanced Preloader */
-    #preloader {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      z-index: 10000; transition: opacity 1s ease;
-    }
-    .loader-container {
-      display: flex; flex-direction: column; align-items: center; gap: 2rem;
-    }
-    .glitch-text {
-      font-family: 'Orbitron', monospace;
-      font-size: 5rem; font-weight: 900;
-      background: var(--gradient);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      animation: glitch 2s linear infinite, glow 2s ease-in-out infinite alternate;
-      position: relative;
-    }
-    .progress-bar {
-      width: 300px; height: 4px; background: rgba(255,255,255,0.1);
-      border-radius: 2px; overflow: hidden; position: relative;
-    }
-    .progress-fill {
-      height: 100%; background: var(--gradient);
-      width: 0%; transition: width 0.1s ease;
-      box-shadow: 0 0 10px var(--accent);
-    }
-    @keyframes glitch {
-      0% { transform: none; filter: hue-rotate(0deg); }
-      20% { transform: skew(-2deg, 1deg); filter: hue-rotate(90deg); }
-      40% { transform: skew(1deg, -1deg); filter: hue-rotate(180deg); }
-      60% { transform: skew(-1deg, 2deg); filter: hue-rotate(270deg); }
-      80% { transform: skew(2deg, -0.5deg); filter: hue-rotate(360deg); }
-      100% { transform: none; filter: hue-rotate(0deg); }
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 20px var(--accent); }
-      to { text-shadow: 0 0 40px var(--accent), 0 0 60px var(--accent2); }
+    #custom-cursor.hovering {
+      width: 48px;
+      height: 48px;
+      background-color: transparent;
+      border: 1px solid #fe1e34;
+      mix-blend-mode: normal;
     }
 
-    /* Enhanced Navigation */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--glass-border);
-      padding: 1rem 2rem; z-index: 1000;
-      transition: all 0.3s ease;
+    /* Subtle Film Grain Overlay */
+    .grain-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
-    nav.scrolled {
-      background: rgba(0, 0, 0, 0.9);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+    .text-stroke-bone {
+      -webkit-text-stroke: 1px #fcfcfc;
+      color: transparent;
     }
-    .nav-container {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
+
+    .text-stroke-smoke {
+      -webkit-text-stroke: 1px #262525;
+      color: transparent;
     }
-    .logo {
-      font-family: 'Orbitron', monospace;
-      font-weight: 700; font-size: 1.5rem;
-      background: var(--gradient);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
     }
-    .nav-menu {
-      display: flex; gap: 2rem;
+    ::-webkit-scrollbar-track {
+      background: #080808;
     }
-    .nav-menu a {
-      position: relative; text-decoration: none;
-      color: var(--sub); font-weight: 500;
-      transition: all 0.3s ease; padding: 0.5rem 1rem;
-      border-radius: 25px;
+    ::-webkit-scrollbar-thumb {
+      background: #262525;
     }
-    .nav-menu a::before {
-      content: ''; position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%; background: var(--gradient);
-      border-radius: 25px; opacity: 0; z-index: -1;
-      transition: opacity 0.3s ease;
+    ::-webkit-scrollbar-thumb:hover {
+      background: #525252;
     }
-    .nav-menu a:hover, .nav-menu a.active {
-      color: var(--fg); transform: translateY(-2px);
+
+    ::selection {
+      background: #fe1e34;
+      color: #080808;
     }
-    .nav-menu a:hover::before, .nav-menu a.active::before {
+
+    /* Morphing Navigation Bar */
+    #main-nav {
+      transition:
+        width 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        max-width 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        top 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        padding 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        border-radius 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.5s ease,
+        backdrop-filter 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.7s ease,
+        opacity 0.4s ease,
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      max-width: 100%;
+      border: 1px solid transparent;
+      will-change: width, max-width, top, padding, background-color, transform;
+    }
+    #main-nav.scrolled {
+      width: calc(100% - 48px) !important;
+      max-width: 1000px !important;
+      top: 24px !important;
+      padding: 12px 32px !important;
+      border-radius: 100px !important;
+      background-color: rgba(23, 22, 23, 0.85) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border-color: rgba(82, 82, 82, 0.4) !important;
+      mix-blend-mode: normal !important;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6) !important;
+    }
+    #main-nav.scrolled #nav-cta {
+      padding: 10px 20px !important;
+    }
+
+    /* Wordmark & Favicon Morph */
+    #nav-logo-container {
+      transition: height 0.6s cubic-bezier(0.16, 1, 0.3, 1), width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-wordmark {
       opacity: 1;
+      transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(0);
     }
-
-    /* Hero Section */
-    .hero {
-      height: 100vh; display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      text-align: center; padding: 2rem; position: relative;
-      background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
-    }
-    .hero-content {
-      z-index: 2; animation: heroFloat 6s ease-in-out infinite;
-    }
-    .hero h1 {
-      font-family: 'Orbitron', monospace;
-      font-size: clamp(3rem, 8vw, 6rem); font-weight: 900;
-      background: var(--gradient); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; margin-bottom: 1rem;
-      animation: textGlow 3s ease-in-out infinite alternate;
-    }
-    .hero .subtitle {
-      font-size: clamp(1.2rem, 3vw, 2rem); color: var(--sub);
-      margin-bottom: 2rem; animation: fadeInUp 1s ease 0.5s both;
-    }
-    .hero-buttons {
-      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
-      margin-top: 2rem;
-    }
-    .btn {
-      padding: 1rem 2rem; border: none; border-radius: 50px;
-      font-weight: 600; cursor: pointer; position: relative;
-      overflow: hidden; transition: all 0.3s ease;
-      text-decoration: none; display: inline-block;
-    }
-    .btn-primary {
-      background: var(--gradient); color: var(--fg);
-      box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
-    }
-    .btn-secondary {
-      background: transparent; color: var(--accent);
-      border: 2px solid var(--accent);
-    }
-    .btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4);
-    }
-    .btn::before {
-      content: ''; position: absolute; top: 0; left: -100%;
-      width: 100%; height: 100%; background: rgba(255,255,255,0.1);
-      transition: left 0.5s ease;
-    }
-    .btn:hover::before { left: 100%; }
-
-    /* Floating geometric shapes */
-    .floating-shapes {
-      position: absolute; width: 100%; height: 100%;
-      overflow: hidden; z-index: 1;
-    }
-    .shape {
-      position: absolute; opacity: 0.1;
-      animation: float 20s infinite ease-in-out;
-    }
-    .shape:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-    .shape:nth-child(2) { top: 60%; right: 10%; animation-delay: 5s; }
-    .shape:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 10s; }
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      25% { transform: translateY(-20px) rotate(90deg); }
-      50% { transform: translateY(-40px) rotate(180deg); }
-      75% { transform: translateY(-20px) rotate(270deg); }
-    }
-    @keyframes heroFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    @keyframes textGlow {
-      from { filter: drop-shadow(0 0 5px var(--accent)); }
-      to { filter: drop-shadow(0 0 20px var(--accent)) drop-shadow(0 0 40px var(--accent2)); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Enhanced Sections */
-    .section {
-      padding: 100px 20px; max-width: 1200px; margin: auto;
-      opacity: 0; transform: translateY(60px);
-      transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .section.visible {
-      opacity: 1; transform: translateY(0);
-    }
-    .section h2 {
-      font-family: 'Orbitron', monospace;
-      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700;
-      background: var(--gradient); -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; margin-bottom: 2rem;
-      text-align: center; position: relative;
-    }
-    .section h2::after {
-      content: ''; position: absolute; bottom: -10px; left: 50%;
-      width: 100px; height: 3px; background: var(--gradient);
-      transform: translateX(-50%); border-radius: 2px;
-    }
-
-    /* Interactive Cards */
-    .card {
-      background: var(--card-bg); border: 1px solid var(--glass-border);
-      border-radius: 20px; padding: 3rem; margin-bottom: 2rem;
-      backdrop-filter: blur(20px); position: relative; overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-    }
-    .card::before {
-      content: ''; position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%; background: var(--gradient);
-      opacity: 0; transition: opacity 0.4s ease; z-index: -1;
-    }
-    .card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
-      border-color: var(--accent);
-    }
-    .card:hover::before { opacity: 0.05; }
-
-    /* About Section with Timeline */
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3rem; align-items: center; margin-top: 3rem;
-    }
-    .about-text {
-      font-size: 1.2rem; line-height: 1.8;
-      color: var(--sub);
-    }
-    .about-image {
-      width: 300px; height: 300px; border-radius: 50%;
-      background: var(--gradient); display: flex;
-      align-items: center; justify-content: center;
-      font-size: 3rem; color: var(--fg);
-      margin: 0 auto; animation: spin 20s linear infinite;
-    }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    /* Skills with Progress Bars */
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem; margin-top: 3rem;
-    }
-    .skill-item {
-      background: var(--card-bg); padding: 2rem;
-      border-radius: 15px; border: 1px solid var(--glass-border);
-      transition: all 0.3s ease;
-    }
-    .skill-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
-    }
-    .skill-name {
-      font-size: 1.2rem; font-weight: 600;
-      margin-bottom: 1rem; color: var(--accent);
-    }
-    .skill-bar {
-      width: 100%; height: 8px; background: rgba(255,255,255,0.1);
-      border-radius: 4px; overflow: hidden; position: relative;
-    }
-    .skill-progress {
-      height: 100%; background: var(--gradient);
-      width: 0%; transition: width 2s ease;
-      box-shadow: 0 0 10px var(--accent);
-    }
-
-    /* Projects Gallery */
-    .projects-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem; margin-top: 3rem;
-    }
-    .project-card {
-      background: var(--card-bg); border-radius: 20px;
-      overflow: hidden; transition: all 0.4s ease;
-      border: 1px solid var(--glass-border);
-      position: relative;
-    }
-    .project-card::before {
-      content: ''; position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%; background: var(--gradient);
-      opacity: 0; transition: opacity 0.4s ease; z-index: 1;
-    }
-    .project-card:hover::before { opacity: 0.1; }
-    .project-card:hover {
-      transform: translateY(-10px) rotateX(5deg);
-      box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
-    }
-    .project-image {
-      width: 100%; height: 200px;
-      background: linear-gradient(45deg, var(--accent), var(--accent2));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 3rem; color: var(--fg);
-    }
-    .project-content {
-      padding: 2rem; position: relative; z-index: 2;
-    }
-    .project-title {
-      font-size: 1.5rem; font-weight: 700;
-      color: var(--accent); margin-bottom: 1rem;
-    }
-    .project-desc {
-      color: var(--sub); line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-    .project-tech {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
-    }
-    .tech-tag {
-      background: rgba(0, 212, 255, 0.1);
-      color: var(--accent); padding: 0.3rem 0.8rem;
-      border-radius: 15px; font-size: 0.9rem;
-      border: 1px solid var(--accent);
-    }
-
-    /* Contact Section */
-    .contact-container {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3rem; margin-top: 3rem;
-    }
-    .contact-info {
-      display: flex; flex-direction: column; gap: 2rem;
-    }
-    .contact-item {
-      display: flex; align-items: center; gap: 1rem;
-      padding: 1.5rem; background: var(--card-bg);
-      border-radius: 15px; border: 1px solid var(--glass-border);
-      transition: all 0.3s ease;
-    }
-    .contact-item:hover {
-      transform: translateX(10px);
-      box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
-    }
-    .contact-icon {
-      width: 50px; height: 50px; border-radius: 50%;
-      background: var(--gradient); display: flex;
-      align-items: center; justify-content: center;
-      font-size: 1.5rem; color: var(--fg);
-    }
-
-    /* Interactive Form */
-    .contact-form {
-      display: flex; flex-direction: column; gap: 1.5rem;
-    }
-    .form-group {
-      position: relative;
-    }
-    .form-input, .form-textarea {
-      width: 100%; padding: 1rem; background: var(--card-bg);
-      border: 1px solid var(--glass-border); border-radius: 10px;
-      color: var(--fg); font-size: 1rem; outline: none;
-      transition: all 0.3s ease;
-    }
-    .form-input:focus, .form-textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
-    }
-    .form-label {
-      position: absolute; top: 1rem; left: 1rem;
-      color: var(--sub); transition: all 0.3s ease;
+    .nav-favicon {
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) scale(0.5);
+      transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       pointer-events: none;
     }
-    .form-input:focus + .form-label,
-    .form-input:not(:placeholder-shown) + .form-label {
-      top: -0.5rem; left: 0.5rem; font-size: 0.8rem;
-      color: var(--accent); background: var(--bg);
-      padding: 0 0.5rem;
+
+    #main-nav.scrolled .nav-wordmark {
+      opacity: 0;
+      transform: translateY(15px);
+      pointer-events: none;
+    }
+    #main-nav.scrolled .nav-favicon {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+      pointer-events: auto;
+    }
+    #main-nav.scrolled #nav-logo-container {
+      height: 44px !important;
+      width: 56px !important;
     }
 
-    /* Footer */
-    .footer {
-      background: rgba(0, 0, 0, 0.5); text-align: center;
-      padding: 3rem 2rem; margin-top: 5rem;
-      border-top: 1px solid var(--glass-border);
-    }
-    .footer-content {
-      max-width: 1200px; margin: 0 auto;
-    }
-    .social-links {
-      display: flex; justify-content: center; gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .social-link {
-      width: 50px; height: 50px; border-radius: 50%;
-      background: var(--gradient); display: flex;
-      align-items: center; justify-content: center;
-      text-decoration: none; color: var(--fg);
-      font-size: 1.5rem; transition: all 0.3s ease;
-    }
-    .social-link:hover {
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+    #main-nav.hidden-on-footer {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transform: translate(-50%, -20px) !important;
     }
 
-    /* Theme Toggle */
-    .theme-toggle {
-      position: fixed; top: 50%; right: 2rem;
-      transform: translateY(-50%); z-index: 2000;
-      background: var(--gradient); color: var(--fg);
-      padding: 1rem; border-radius: 50%; cursor: pointer;
-      transition: all 0.3s ease; border: none;
-      box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
-    }
-    .theme-toggle:hover {
-      transform: translateY(-50%) scale(1.1);
-      box-shadow: 0 8px 30px rgba(0, 212, 255, 0.5);
+    /* Parallax & Reveal Animations */
+    .scroll-parallax {
+      transition: transform 0.1s ease-out;
+      will-change: transform;
     }
 
-    /* Light Mode */
-    body.light-mode {
-      --bg: #ffffff;
-      --fg: #0a0a0a;
-      --sub: #666;
-      --accent: #0066ff;
-      --accent2: #ff6b35;
-      --accent3: #8b5cf6;
-      --card-bg: rgba(0, 0, 0, 0.03);
-      --glass-border: rgba(0, 0, 0, 0.1);
+    .parallax-el {
+      transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .nav-menu { display: none; }
-      .about-grid, .contact-container {
-        grid-template-columns: 1fr;
-      }
-      .hero h1 { font-size: 3rem; }
-      .section { padding: 60px 20px; }
-      .card { padding: 2rem; }
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: opacity, transform;
     }
+    .reveal-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
 
-    /* Scroll Progress Bar */
-    .scroll-progress {
-      position: fixed; top: 0; left: 0; width: 0%;
-      height: 3px; background: var(--gradient);
-      z-index: 10001; transition: width 0.1s ease;
+    /* Interactive Choice Modal Styling */
+    #choice-modal-backdrop {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    /* Particle System */
-    .particle {
-      position: fixed; width: 6px; height: 6px;
-      background: var(--accent); border-radius: 50%;
-      opacity: 0.3; pointer-events: none; z-index: -1;
+    #choice-modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
     }
-
-    /* Loading Animation */
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.7; }
+    #choice-modal-panel {
+      transform: translateY(24px) scale(0.96);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-      /* Floating Header */
-    nav {
-      position: fixed; top: 20px; left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 50px; padding: 1rem 2rem; z-index: 1000;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      width: auto; max-width: 90%;
-    }
-    nav.scrolled {
-      background: rgba(0, 0, 0, 0.95);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-      transform: translateX(-50%) translateY(-5px);
-      border-color: var(--accent);
-    }
-    nav:hover {
-      transform: translateX(-50%) translateY(-2px);
-      box-shadow: 0 16px 48px rgba(0, 212, 255, 0.2);
-    }
-       /* Theme Toggle */
-    .theme-toggle {
-      position: fixed; top: 50%; right: 2rem;
-      transform: translateY(-50%); z-index: 2000;
-      background: var(--gradient); color: var(--fg);
-      padding: 1rem; border-radius: 50%; cursor: pointer;
-      transition: all 0.3s ease; border: none;
-      box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
-    }
-    .theme-toggle:hover {
-      transform: translateY(-50%) scale(1.1);
-      box-shadow: 0 8px 30px rgba(0, 212, 255, 0.5);
-    }
-
-    /* Responsive Watermark */
-    @media (max-width: 768px) {
-      .watermark {
-        bottom: 10px; right: 10px;
-        padding: 0.4rem 0.8rem; font-size: 0.7rem;
-      }
-      .corner-watermark {
-        border-left-width: 60px;
-        border-top-width: 60px;
-      }
-      .corner-watermark::after {
-        top: -50px; right: -50px;
-        font-size: 0.6rem;
-      }
-    }    /* Floating Header */
-    nav {
-      position: fixed; top: 20px; left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 50px; padding: 1rem 2rem; z-index: 1000;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      width: auto; max-width: 90%;
-    }
-    nav.scrolled {
-      background: rgba(0, 0, 0, 0.95);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-      transform: translateX(-50%) translateY(-5px);
-      border-color: var(--accent);
-    }
-    nav:hover {
-      transform: translateX(-50%) translateY(-2px);
-      box-shadow: 0 16px 48px rgba(0, 212, 255, 0.2);
+    #choice-modal-backdrop.active #choice-modal-panel {
+      transform: translateY(0) scale(1);
     }
   </style>
 </head>
-<body>
-  <div class="bg-animation"></div>
-  <div class="scroll-progress"></div>
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
+<body class="font-sans font-light selection:bg-arterial selection:text-void">
 
-  <div id="preloader">
-    <div class="loader-container">
-      <div class="glitch-text">TS</div>
-      <div class="progress-bar">
-        <div class="progress-fill"></div>
+<!-- Film Grain & Custom Cursor -->
+<div class="grain-overlay"></div>
+<div id="custom-cursor"></div>
+
+<!-- Interactive Choice Modal System (Aetheron Glassmorphic Popup) -->
+<div id="choice-modal-backdrop" class="fixed inset-0 z-[9990] bg-void/85 backdrop-blur-md flex items-center justify-center p-4 md:p-6" aria-hidden="true">
+  <div id="choice-modal-panel" class="bg-charcoal border border-iron/70 rounded-[12px] max-w-xl w-full p-6 md:p-8 relative shadow-[0_25px_70px_rgba(0,0,0,0.85)] overflow-hidden">
+    <div class="absolute inset-0 rounded-[12px] pointer-events-none shadow-glass-edge opacity-40"></div>
+    
+    <!-- Modal Header -->
+    <div class="flex items-start justify-between gap-4 border-b border-smoke pb-5 mb-6 relative z-10">
+      <div>
+        <div class="flex items-center gap-2 mb-1.5">
+          <span class="w-2 h-2 rounded-full bg-arterial animate-pulse"></span>
+          <span id="modal-eyebrow" class="text-caption text-arterial uppercase tracking-nav-out">EXTERNAL GATEWAY</span>
+        </div>
+        <h3 id="modal-title" class="text-subheading md:text-heading-sm font-bold uppercase text-bone">Select Destination</h3>
       </div>
+      <button type="button" id="modal-close-btn" class="hover-target text-ash hover:text-arterial border border-smoke hover:border-arterial rounded-full w-9 h-9 flex items-center justify-center transition-colors">
+        <i class="ph ph-x text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Modal Description -->
+    <p id="modal-description" class="text-body text-ash mb-6 relative z-10"></p>
+
+    <!-- Dynamic Options Grid -->
+    <div id="modal-options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10"></div>
+
+    <!-- Modal Footer -->
+    <div class="mt-6 pt-4 border-t border-smoke flex items-center justify-between text-[10px] text-iron uppercase tracking-nav-out relative z-10">
+      <span>PRESS ESC OR CLICK OUTSIDE TO DISMISS</span>
+      <span>EXTERNAL PORTAL LINK</span>
     </div>
   </div>
+</div>
 
-  <nav>
-    <div class="nav-container">
-      <div class="logo">TANUJ.DEV</div>
-      <div class="nav-menu">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#aetheron">Aetheron</a>
-        <a href="#contact">Contact</a>
+<!-- Morphing Navigation Bar -->
+<nav id="main-nav" class="fixed top-0 left-1/2 -translate-x-1/2 w-full z-50 px-6 py-8 flex justify-between items-center pointer-events-none mix-blend-difference">
+  <a href="#hero-section" id="nav-logo-container" class="relative pointer-events-auto hover-target flex items-center h-[56px] md:h-[72px] w-[220px] md:w-[300px]">
+    <!-- Unscrolled Full Typographic Wordmark -->
+    <div class="nav-wordmark flex items-center gap-2.5 absolute left-0 origin-left">
+      <span class="text-[18px] md:text-[22px] font-bold tracking-[-0.06em] uppercase text-bone whitespace-nowrap">TANUJ SHARMA</span>
+      <span class="w-2.5 h-2.5 rounded-full bg-arterial inline-block"></span>
+    </div>
+    <!-- Scrolled Compact Monogram Favicon -->
+    <div class="nav-favicon flex items-center justify-center w-10 h-10 rounded-full border border-iron/80 bg-void/90 text-bone font-bold text-[14px] tracking-tighter">
+      TS<span class="w-1.5 h-1.5 rounded-full bg-arterial ml-0.5"></span>
+    </div>
+  </a>
+
+  <div class="hidden md:flex gap-6 lg:gap-9 pointer-events-auto items-center">
+    <a href="#about" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">About</a>
+    <a href="#objectives" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">Objectives</a>
+    <a href="#skills" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">Skills</a>
+    <a href="#tools" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">Tools</a>
+    <a href="#japan" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">Japan Track</a>
+    <a href="#career" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">Career</a>
+  </div>
+
+  <a href="#contact" id="nav-cta" class="pointer-events-auto border border-ash rounded-[8px] px-5 md:px-6 py-3 text-[12px] uppercase tracking-nav-out text-bone hover:border-arterial hover:text-arterial transition-colors flex items-center gap-2 group hover-target transition-all duration-500">
+    Contact Me <i class="ph ph-arrow-up-right text-lg group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+  </a>
+</nav>
+
+<!-- Background Architectural Symbol -->
+<div class="fixed top-[-20%] right-[-10%] text-[40vw] leading-none font-bold text-smoke opacity-20 pointer-events-none select-none -z-10 font-sans tracking-tight">
+  +
+</div>
+
+<main>
+  <!-- HERO SECTION -->
+  <section id="hero-section" class="min-h-screen relative flex flex-col justify-center px-6 md:px-12 pt-32 pb-16 overflow-hidden">
+    <div class="max-w-[1400px] w-full mx-auto relative z-10">
+
+      <!-- Identity & Role Eyebrow -->
+      <div class="mb-8 md:mb-10 flex flex-wrap items-center gap-y-2 gap-x-3 text-[11px] md:text-[12px] uppercase tracking-nav-out text-ash parallax-el" data-speed="0.01">
+        <span class="w-2 h-2 rounded-full bg-arterial animate-pulse"></span>
+        <a href="#education" class="text-bone font-medium hover:text-arterial transition-colors hover-target">Student</a>
+        <span class="text-iron">/</span>
+        <a href="#skills" class="hover:text-bone transition-colors hover-target">Aspiring Systems Programmer</a>
+        <span class="text-iron">/</span>
+        <a href="#career" class="hover:text-bone transition-colors hover-target">Game Engine Developer</a>
+        <span class="text-iron">/</span>
+        <a href="#entrepreneurship" class="hover:text-bone transition-colors hover-target">Startup Founder</a>
       </div>
-    </div>
-  </nav>
 
-  <section class="hero" id="home">
-    <div class="floating-shapes">
-      <div class="shape">🔷</div>
-      <div class="shape">⭐</div>
-      <div class="shape">🚀</div>
+      <!-- Display Monumental Headline -->
+      <h1 class="flex flex-col items-start gap-1 md:gap-2 uppercase w-full">
+        <span class="text-display-xl font-bold text-bone block leading-[0.85] parallax-el" data-speed="0.015">
+          Tanuj
+        </span>
+        <div class="flex flex-wrap items-center gap-3 md:gap-6 ml-1 md:ml-[8%] parallax-el" data-speed="0.03">
+          <span class="font-serif italic font-light text-[clamp(26px,4vw,56px)] text-ash lowercase tracking-normal transform -translate-y-1 md:-translate-y-3">
+            systems &amp;
+          </span>
+          <span class="text-display-xl font-bold text-bone leading-[0.85]">
+            Engine
+          </span>
+        </div>
+        <span class="text-display-xl font-bold text-bone relative leading-[0.85] parallax-el" data-speed="0.045">
+          Architect
+          <div class="absolute -right-5 md:-right-10 bottom-2 md:bottom-6 w-[14px] md:w-[24px] h-[14px] md:h-[24px] bg-arterial rounded-full"></div>
+        </span>
+      </h1>
+
+      <!-- Hero Footer Bar -->
+      <div class="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-12 gap-8 items-end parallax-el" data-speed="0.01">
+        <div class="md:col-span-5 lg:col-span-4 text-[12px] text-ash tracking-nav-out uppercase leading-relaxed">
+          <p>Class 12 CBSE student from India exploring systems programming, operating system design, computer graphics, game engine architecture, and narrative worlds.</p>
+        </div>
+        <div class="md:col-span-3 lg:col-span-5 flex items-center gap-4">
+          <div class="w-full h-[1px] bg-iron"></div>
+          <span class="text-caption text-iron whitespace-nowrap">SCROLL TO DISCOVER</span>
+        </div>
+        <div class="md:col-span-4 lg:col-span-3 flex md:justify-end">
+          <a href="#about" class="text-[12px] uppercase tracking-nav-out text-bone flex items-center gap-2 group hover-target py-4">
+            Explore Dossier <i class="ph ph-arrow-down text-lg group-hover:translate-y-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+
     </div>
-    <div class="hero-content">
-      <h1>Tanuj Sharma</h1>
-      <p class="subtitle">Creative Developer & Future Innovator</p>
-      <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">View My Work</a>
-        <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+  </section>
+
+  <!-- 1. ABOUT ME & 10. PROFESSIONAL SUMMARY -->
+  <section id="about" class="py-section-lg px-6 md:px-12 relative overflow-hidden border-t border-smoke/60">
+    <div class="max-w-[1200px] mx-auto scroll-parallax" data-scroll-speed="0.04">
+
+      <!-- Editorial Display Statement -->
+      <div class="mb-16 md:mb-28 reveal-up">
+        <div class="text-caption text-arterial uppercase tracking-nav-out mb-4">01 / About Me &amp; Professional Summary</div>
+        <h2 class="flex items-baseline flex-wrap gap-x-2 md:gap-x-4">
+          <span class="text-heading-lg md:text-display font-bold uppercase text-bone">Beneath</span>
+          <span class="font-serif italic text-heading md:text-heading-lg text-ash lowercase">the</span>
+          <span class="text-heading-lg md:text-display font-bold uppercase text-bone">surface.</span>
+        </h2>
+        <h2 class="flex items-baseline flex-wrap mt-2 md:-mt-4">
+          <span class="text-heading-lg md:text-display font-bold uppercase text-bone">We</span>
+          <span class="font-display text-[84px] md:text-[136px] text-bone mx-2 transform translate-y-3 md:translate-y-7 leading-none -tracking-[0.1em]">b</span>
+          <span class="text-heading-lg md:text-display font-bold uppercase text-bone">uild</span>
+          <span class="font-serif italic text-heading md:text-heading-lg text-ash lowercase ml-4">systems &amp; worlds.</span>
+        </h2>
+      </div>
+
+      <!-- Detailed Bio & Summary Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+        <!-- Left Column: Areas of Interest & Professional Summary Card -->
+        <div id="summary" class="md:col-span-5 flex flex-col gap-8 reveal-up reveal-delay-1">
+          <div class="bg-charcoal border border-smoke rounded-[8px] p-6 relative overflow-hidden">
+            <div class="absolute inset-0 rounded-[8px] pointer-events-none shadow-glass-edge opacity-40"></div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-caption text-arterial uppercase tracking-nav-out">10 / Professional Summary</span>
+              <span class="w-2 h-2 rounded-full bg-arterial"></span>
+            </div>
+            <p class="text-body text-bone mb-4">
+              I am a <a href="https://www.cbse.gov.in/" target="_blank" rel="noopener noreferrer" class="underline decoration-iron hover:decoration-arterial hover:text-arterial transition-colors hover-target">CBSE Class 12</a> student from India with interests in programming, computer science, systems engineering, and game technology.
+            </p>
+            <p class="text-body text-ash mb-4">
+              My technical learning spans <button type="button" data-modal="python-c" class="underline decoration-iron hover:decoration-arterial text-bone hover:text-arterial transition-colors hover-target">Python, C</button>, <a href="https://dev.mysql.com/doc/" target="_blank" rel="noopener noreferrer" class="underline decoration-iron hover:decoration-arterial text-bone hover:text-arterial transition-colors hover-target">SQL</a>, <button type="button" data-modal="web-tech" class="underline decoration-iron hover:decoration-arterial text-bone hover:text-arterial transition-colors hover-target">HTML, CSS, and JavaScript</button>, alongside an interest in <button type="button" data-modal="os-env" class="underline decoration-iron hover:decoration-arterial text-bone hover:text-arterial transition-colors hover-target">Linux</button>, databases, and <a href="https://www.blender.org/" target="_blank" rel="noopener noreferrer" class="underline decoration-iron hover:decoration-arterial text-bone hover:text-arterial transition-colors hover-target">3D development tools</a>. I aspire to specialize in systems programming and game engine development, with a particular interest in computer graphics, rendering, and operating system architecture.
+            </p>
+            <p class="text-body text-ash">
+              I am also interested in <a href="#entrepreneurship" class="underline decoration-iron hover:decoration-arterial text-bone hover:text-arterial transition-colors hover-target">entrepreneurship</a> and <a href="#creative" class="underline decoration-iron hover:decoration-arterial text-bone hover:text-arterial transition-colors hover-target">creative writing</a>, especially stories and experiences developed for games and animation. My long-term plan is to <a href="https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/" target="_blank" rel="noopener noreferrer" class="underline decoration-iron hover:decoration-arterial text-bone hover:text-arterial transition-colors hover-target">pursue higher education in Japan</a> and work toward a career in game engine engineering.
+            </p>
+          </div>
+
+          <!-- Core Areas of Interest Pills (Interactive Links) -->
+          <div>
+            <div class="text-caption text-iron uppercase tracking-nav-out mb-4">Core Areas of Interest (Click to Explore)</div>
+            <div class="flex flex-wrap gap-2">
+              <a href="#skills" class="hover-target border border-iron/70 bg-void px-3.5 py-2 rounded-full text-[11px] uppercase tracking-nav-out text-bone hover:border-arterial hover:text-arterial transition-colors flex items-center gap-1.5">
+                Computer Science <i class="ph ph-arrow-down-right text-xs"></i>
+              </a>
+              <a href="https://wiki.osdev.org/" target="_blank" rel="noopener noreferrer" class="hover-target border border-iron/70 bg-void px-3.5 py-2 rounded-full text-[11px] uppercase tracking-nav-out text-bone hover:border-arterial hover:text-arterial transition-colors flex items-center gap-1.5">
+                Systems Programming <i class="ph ph-arrow-up-right text-xs"></i>
+              </a>
+              <a href="#career" class="hover-target border border-iron/70 bg-void px-3.5 py-2 rounded-full text-[11px] uppercase tracking-nav-out text-bone hover:border-arterial hover:text-arterial transition-colors flex items-center gap-1.5">
+                Game Engine Development <i class="ph ph-arrow-down-right text-xs"></i>
+              </a>
+              <a href="#skills" class="hover-target border border-iron/70 bg-void px-3.5 py-2 rounded-full text-[11px] uppercase tracking-nav-out text-bone hover:border-arterial hover:text-arterial transition-colors flex items-center gap-1.5">
+                Software Engineering <i class="ph ph-arrow-down-right text-xs"></i>
+              </a>
+              <button type="button" data-modal="web-tech" class="hover-target border border-iron/70 bg-void px-3.5 py-2 rounded-full text-[11px] uppercase tracking-nav-out text-bone hover:border-arterial hover:text-arterial transition-colors flex items-center gap-1.5">
+                Web Technologies <i class="ph ph-browsers text-xs"></i>
+              </button>
+              <a href="#creative" class="hover-target border border-iron/70 bg-void px-3.5 py-2 rounded-full text-[11px] uppercase tracking-nav-out text-bone hover:border-arterial hover:text-arterial transition-colors flex items-center gap-1.5">
+                Creative Writing <i class="ph ph-arrow-down-right text-xs"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: 1. About Me Narrative -->
+        <div class="md:col-span-6 md:col-start-7 flex flex-col gap-6">
+          <div class="text-caption text-iron uppercase tracking-nav-out reveal-up">01 / Personal Statement</div>
+          <p class="text-subheading font-light text-bone leading-snug reveal-up reveal-delay-1">
+            I am Tanuj Sharma, a Class 12 <a href="https://www.cbse.gov.in/" target="_blank" rel="noopener noreferrer" class="underline decoration-iron hover:decoration-arterial hover:text-arterial transition-colors hover-target">CBSE</a> student from India with a strong interest in computer science, programming, software engineering, and game technology.
+          </p>
+          <p class="text-body text-ash reveal-up reveal-delay-1">
+            My primary technical interests include <a href="https://en.cppreference.com/w/c" target="_blank" rel="noopener noreferrer" class="text-bone underline decoration-iron hover:decoration-arterial hover:text-arterial transition-colors hover-target">systems programming</a>, <a href="https://wiki.osdev.org/" target="_blank" rel="noopener noreferrer" class="text-bone underline decoration-iron hover:decoration-arterial hover:text-arterial transition-colors hover-target">operating system design</a>, computer graphics, <button type="button" data-modal="graphics-api" class="text-bone underline decoration-iron hover:decoration-arterial hover:text-arterial transition-colors hover-target">rendering technologies</button>, and <a href="https://www.capcom.co.jp/ir/english/business/reengine.html" target="_blank" rel="noopener noreferrer" class="text-bone underline decoration-iron hover:decoration-arterial hover:text-arterial transition-colors hover-target">game engine architecture</a>.
+          </p>
+          <p class="text-body text-ash reveal-up reveal-delay-2">
+            I am interested in understanding how software works beneath the surface, from fundamental programming concepts to the systems that power modern applications and interactive experiences.
+          </p>
+          <p class="text-body text-ash reveal-up reveal-delay-2">
+            Alongside my technical interests, I explore <button type="button" data-modal="web-tech" class="text-bone underline decoration-iron hover:decoration-arterial hover:text-arterial transition-colors hover-target">web technologies</button>, <a href="#entrepreneurship" class="text-bone underline decoration-iron hover:decoration-arterial hover:text-arterial transition-colors hover-target">entrepreneurship</a>, game development, and <a href="#creative" class="text-bone underline decoration-iron hover:decoration-arterial hover:text-arterial transition-colors hover-target">creative writing</a>.
+          </p>
+          <div class="border-l-2 border-arterial pl-5 py-1 mt-2 reveal-up reveal-delay-3">
+            <p class="text-body text-bone font-medium">
+              My long-term goal is to develop strong computer science fundamentals, <a href="#japan" class="underline decoration-arterial hover:text-arterial transition-colors hover-target">pursue higher education in Japan</a>, and build a career in <a href="#career" class="underline decoration-arterial hover:text-arterial transition-colors hover-target">game engine development</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 9. CURRENT LEARNING OBJECTIVES (THE STACK PIPELINE SECTION) -->
+  <section id="objectives" class="py-section px-6 md:px-12 border-t border-smoke overflow-hidden relative">
+    <!-- Giant Stroke Background Text -->
+    <div class="absolute left-[-5%] top-[50%] transform -translate-y-1/2 text-[28vw] font-bold text-stroke-smoke pointer-events-none select-none z-0 leading-none">
+      FOCUS
+    </div>
+
+    <div class="max-w-[1200px] mx-auto relative z-10">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4 reveal-up">
+        <div>
+          <div class="text-caption text-arterial uppercase tracking-nav-out mb-2">09 / Ongoing Development Direction</div>
+          <h3 class="text-heading-sm md:text-heading font-bold uppercase text-bone">Current Learning Objectives</h3>
+        </div>
+        <p class="text-caption text-ash uppercase tracking-nav-out">Click any stage or priority to access documentation &amp; portals.</p>
+      </div>
+
+      <!-- Connected Stack Pipeline Flow (Interactive Triggers) -->
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-3 relative mb-16">
+        <div class="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-smoke -z-10 reveal-up"></div>
+        <div class="md:hidden absolute left-[15px] top-0 w-[1px] h-full bg-smoke -z-10 reveal-up"></div>
+
+        <button type="button" data-modal="python-c" class="hover-target bg-void border border-iron hover:border-arterial rounded-full px-5 py-3 flex items-center gap-3 relative group reveal-up reveal-delay-1 transition-colors">
+          <div class="w-2 h-2 rounded-full bg-bone group-hover:bg-arterial transition-colors"></div>
+          <span class="text-[11px] uppercase tracking-nav-out text-bone group-hover:text-arterial transition-colors">Python &amp; C Core</span>
+          <i class="ph ph-arrow-up-right text-xs text-iron group-hover:text-arterial"></i>
+        </button>
+
+        <i class="ph ph-arrow-right text-iron text-xl hidden md:block reveal-up reveal-delay-1"></i>
+        <i class="ph ph-arrow-down text-iron text-xl md:hidden ml-[7px] reveal-up reveal-delay-1"></i>
+
+        <button type="button" data-modal="web-tech" class="hover-target bg-void border border-iron hover:border-arterial rounded-full px-5 py-3 flex items-center gap-3 relative group reveal-up reveal-delay-1 transition-colors">
+          <div class="w-2 h-2 rounded-full bg-bone group-hover:bg-arterial transition-colors"></div>
+          <span class="text-[11px] uppercase tracking-nav-out text-bone group-hover:text-arterial transition-colors">Web &amp; SQL Systems</span>
+          <i class="ph ph-arrow-up-right text-xs text-iron group-hover:text-arterial"></i>
+        </button>
+
+        <i class="ph ph-arrow-right text-iron text-xl hidden md:block reveal-up reveal-delay-2"></i>
+        <i class="ph ph-arrow-down text-iron text-xl md:hidden ml-[7px] reveal-up reveal-delay-2"></i>
+
+        <button type="button" data-modal="os-env" class="hover-target bg-void border border-iron hover:border-arterial rounded-full px-5 py-3 flex items-center gap-3 relative group reveal-up reveal-delay-2 transition-colors">
+          <div class="w-2 h-2 rounded-full bg-bone group-hover:bg-arterial transition-colors"></div>
+          <span class="text-[11px] uppercase tracking-nav-out text-bone group-hover:text-arterial transition-colors">DSA, C++ &amp; OS Arch</span>
+          <i class="ph ph-arrow-up-right text-xs text-iron group-hover:text-arterial"></i>
+        </button>
+
+        <i class="ph ph-arrow-right text-iron text-xl hidden md:block reveal-up reveal-delay-3"></i>
+        <i class="ph ph-arrow-down text-iron text-xl md:hidden ml-[7px] reveal-up reveal-delay-3"></i>
+
+        <button type="button" data-modal="mext-japan" class="hover-target bg-void border border-arterial rounded-full px-5 py-3 flex items-center gap-3 relative shadow-[0_0_15px_rgba(254,30,52,0.2)] hover:bg-arterial/10 reveal-up reveal-delay-3 transition-colors">
+          <div class="w-2 h-2 rounded-full bg-arterial animate-pulse"></div>
+          <span class="text-[11px] uppercase tracking-nav-out text-bone">Graphics, Engines &amp; Japan Track</span>
+          <i class="ph ph-arrow-up-right text-xs text-arterial"></i>
+        </button>
+      </div>
+
+      <!-- All 8 Current Learning Objectives Grid (Linked Cards) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <button type="button" data-modal="python-c" class="text-left hover-target bg-charcoal/80 border border-smoke hover:border-arterial rounded-[8px] p-5 transition-colors group reveal-up reveal-delay-1">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-caption text-arterial font-mono">PRIORITY 01</span>
+            <i class="ph ph-arrow-up-right text-iron group-hover:text-arterial transition-colors"></i>
+          </div>
+          <p class="text-body text-bone">Strengthening my Python and C programming fundamentals.</p>
+        </button>
+
+        <button type="button" data-modal="web-tech" class="text-left hover-target bg-charcoal/80 border border-smoke hover:border-arterial rounded-[8px] p-5 transition-colors group reveal-up reveal-delay-1">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-caption text-arterial font-mono">PRIORITY 02</span>
+            <i class="ph ph-arrow-up-right text-iron group-hover:text-arterial transition-colors"></i>
+          </div>
+          <p class="text-body text-bone">Improving my knowledge of HTML, CSS, and JavaScript.</p>
+        </button>
+
+        <a href="https://dev.mysql.com/doc/" target="_blank" rel="noopener noreferrer" class="block hover-target bg-charcoal/80 border border-smoke hover:border-arterial rounded-[8px] p-5 transition-colors group reveal-up reveal-delay-2">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-caption text-arterial font-mono">PRIORITY 03</span>
+            <i class="ph ph-arrow-up-right text-iron group-hover:text-arterial transition-colors"></i>
+          </div>
+          <p class="text-body text-bone">Developing a stronger understanding of SQL and database systems.</p>
+        </a>
+
+        <a href="https://en.cppreference.com/w/cpp/algorithm" target="_blank" rel="noopener noreferrer" class="block hover-target bg-charcoal/80 border border-smoke hover:border-arterial rounded-[8px] p-5 transition-colors group reveal-up reveal-delay-2">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-caption text-arterial font-mono">PRIORITY 04</span>
+            <i class="ph ph-arrow-up-right text-iron group-hover:text-arterial transition-colors"></i>
+          </div>
+          <p class="text-body text-bone">Studying data structures and algorithms.</p>
+        </a>
+
+        <a href="https://en.cppreference.com/w/" target="_blank" rel="noopener noreferrer" class="block hover-target bg-charcoal/80 border border-smoke hover:border-arterial rounded-[8px] p-5 transition-colors group reveal-up reveal-delay-2">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-caption text-arterial font-mono">PRIORITY 05</span>
+            <i class="ph ph-arrow-up-right text-iron group-hover:text-arterial transition-colors"></i>
+          </div>
+          <p class="text-body text-bone">Progressing toward C++ and systems programming.</p>
+        </a>
+
+        <a href="https://wiki.osdev.org/" target="_blank" rel="noopener noreferrer" class="block hover-target bg-charcoal/80 border border-smoke hover:border-arterial rounded-[8px] p-5 transition-colors group reveal-up reveal-delay-3">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-caption text-arterial font-mono">PRIORITY 06</span>
+            <i class="ph ph-arrow-up-right text-iron group-hover:text-arterial transition-colors"></i>
+          </div>
+          <p class="text-body text-bone">Learning more about computer architecture and operating systems.</p>
+        </a>
+
+        <button type="button" data-modal="graphics-api" class="text-left hover-target bg-charcoal/80 border border-smoke hover:border-arterial rounded-[8px] p-5 transition-colors group reveal-up reveal-delay-3">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-caption text-arterial font-mono">PRIORITY 07</span>
+            <i class="ph ph-arrow-up-right text-iron group-hover:text-arterial transition-colors"></i>
+          </div>
+          <p class="text-body text-bone">Exploring computer graphics and game engine development.</p>
+        </button>
+
+        <button type="button" data-modal="mext-japan" class="text-left hover-target bg-charcoal/80 border border-arterial/60 hover:border-arterial rounded-[8px] p-5 transition-colors group reveal-up reveal-delay-3">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-caption text-arterial font-mono">PRIORITY 08</span>
+            <i class="ph ph-arrow-up-right text-arterial group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+          </div>
+          <p class="text-body text-bone">Preparing for higher education opportunities in Japan.</p>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. TECHNICAL SKILLS AND INTERESTS & 3. TOOLS AND TECHNOLOGIES -->
+  <section id="skills" class="py-section-lg px-6 md:px-12 border-t border-smoke">
+    <div class="max-w-[1400px] mx-auto">
+
+      <div class="flex flex-col md:flex-row justify-between md:items-end mb-16 gap-6 reveal-up">
+        <div>
+          <div class="text-caption text-arterial uppercase tracking-nav-out mb-3">02 &amp; 03 / Technical Architecture</div>
+          <h2 class="text-heading md:text-heading-lg font-bold uppercase text-bone">Technical Skills &amp; <br> Core Interests</h2>
+        </div>
+        <p class="text-body text-ash max-w-md">
+          These are my technical skills and areas of study. My proficiency varies by technology, and I am continuing to develop my knowledge through independent learning and practice.
+        </p>
+      </div>
+
+      <!-- 3-Column Architectural Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1: Programming Languages & Web Technologies -->
+        <div class="bg-smoke border border-arterial rounded-[8px] p-[24px] flex flex-col justify-between min-h-[440px] group relative overflow-hidden reveal-up reveal-delay-1">
+          <div class="absolute inset-0 rounded-[8px] pointer-events-none shadow-glass-edge"></div>
+          <div>
+            <div class="flex justify-between items-start mb-8">
+              <span class="text-caption text-arterial uppercase tracking-nav-out">Domain I / Languages &amp; Web</span>
+              <button type="button" data-modal="python-c" class="hover-target text-arterial hover:scale-110 transition-transform" title="Open Language Documentation">
+                <i class="ph ph-arrow-up-right text-2xl"></i>
+              </button>
+            </div>
+            <h3 class="text-heading-sm font-bold uppercase text-bone mb-2">Programming &amp; Web Technologies</h3>
+            <p class="text-body text-ash">Core languages for systems logic, data structures, relational queries, and interactive web applications.</p>
+          </div>
+
+          <ul class="flex flex-col gap-3.5 mt-8 border-t border-iron pt-6">
+            <li class="text-[12px] text-bone flex items-start gap-2.5">
+              <span class="w-1.5 h-1.5 bg-arterial rounded-full mt-1.5 shrink-0"></span>
+              <a href="https://docs.python.org/3/" target="_blank" rel="noopener noreferrer" class="hover-target group/item">
+                <strong class="uppercase tracking-nav-out group-hover/item:text-arterial transition-colors">Python <i class="ph ph-arrow-up-right text-[10px]"></i>:</strong> <span class="text-ash">Programming fundamentals, data structures, and file handling.</span>
+              </a>
+            </li>
+            <li class="text-[12px] text-bone flex items-start gap-2.5">
+              <span class="w-1.5 h-1.5 bg-arterial rounded-full mt-1.5 shrink-0"></span>
+              <a href="https://en.cppreference.com/w/c" target="_blank" rel="noopener noreferrer" class="hover-target group/item">
+                <strong class="uppercase tracking-nav-out group-hover/item:text-arterial transition-colors">C <i class="ph ph-arrow-up-right text-[10px]"></i>:</strong> <span class="text-ash">Systems-oriented programming fundamentals.</span>
+              </a>
+            </li>
+            <li class="text-[12px] text-bone flex items-start gap-2.5">
+              <span class="w-1.5 h-1.5 bg-arterial rounded-full mt-1.5 shrink-0"></span>
+              <a href="https://dev.mysql.com/doc/" target="_blank" rel="noopener noreferrer" class="hover-target group/item">
+                <strong class="uppercase tracking-nav-out group-hover/item:text-arterial transition-colors">SQL <i class="ph ph-arrow-up-right text-[10px]"></i>:</strong> <span class="text-ash">Database queries and relational database concepts.</span>
+              </a>
+            </li>
+            <li class="text-[12px] text-bone flex items-start gap-2.5">
+              <span class="w-1.5 h-1.5 bg-arterial rounded-full mt-1.5 shrink-0"></span>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="hover-target group/item">
+                <strong class="uppercase tracking-nav-out group-hover/item:text-arterial transition-colors">JavaScript <i class="ph ph-arrow-up-right text-[10px]"></i>:</strong> <span class="text-ash">Web programming, client-side programming, and interactive web experiences.</span>
+              </a>
+            </li>
+            <li class="text-[12px] text-bone flex items-start gap-2.5">
+              <span class="w-1.5 h-1.5 bg-arterial rounded-full mt-1.5 shrink-0"></span>
+              <button type="button" data-modal="web-tech" class="text-left hover-target group/item">
+                <strong class="uppercase tracking-nav-out group-hover/item:text-arterial transition-colors">HTML &amp; CSS <i class="ph ph-browsers text-[11px]"></i>:</strong> <span class="text-ash">Structuring web pages/content, styling, layouts, and visual presentation.</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Computer Science -->
+        <div class="bg-void border border-ash/30 rounded-[8px] p-[24px] flex flex-col justify-between min-h-[440px] group relative overflow-hidden reveal-up reveal-delay-2">
+          <div class="absolute inset-0 rounded-[8px] pointer-events-none shadow-glass-edge opacity-50"></div>
+          <div>
+            <div class="flex justify-between items-start mb-8">
+              <span class="text-caption text-ash uppercase tracking-nav-out">Domain II / Theory &amp; Design</span>
+              <a href="https://wiki.osdev.org/" target="_blank" rel="noopener noreferrer" class="hover-target text-ash hover:text-arterial transition-colors" title="OSDev Wiki">
+                <i class="ph ph-arrow-up-right text-2xl"></i>
+              </a>
+            </div>
+            <h3 class="text-heading-sm font-bold uppercase text-bone mb-2">Computer Science</h3>
+            <p class="text-body text-ash">Foundational computational principles, algorithmic problem-solving, and low-level system organization.</p>
+          </div>
+
+          <ul class="flex flex-col gap-3.5 mt-8 border-t border-smoke pt-6">
+            <li>
+              <a href="https://en.cppreference.com/w/cpp/algorithm" target="_blank" rel="noopener noreferrer" class="hover-target text-[12px] text-pebble hover:text-bone uppercase tracking-nav-out flex items-center justify-between gap-2.5 transition-colors">
+                <span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-iron rounded-full shrink-0"></span> Data structures and algorithms</span>
+                <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener noreferrer" class="hover-target text-[12px] text-pebble hover:text-bone uppercase tracking-nav-out flex items-center justify-between gap-2.5 transition-colors">
+                <span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-iron rounded-full shrink-0"></span> Programming logic and problem-solving</span>
+                <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://dev.mysql.com/doc/" target="_blank" rel="noopener noreferrer" class="hover-target text-[12px] text-pebble hover:text-bone uppercase tracking-nav-out flex items-center justify-between gap-2.5 transition-colors">
+                <span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-iron rounded-full shrink-0"></span> Database management</span>
+                <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.python.org/3/tutorial/inputoutput.html" target="_blank" rel="noopener noreferrer" class="hover-target text-[12px] text-pebble hover:text-bone uppercase tracking-nav-out flex items-center justify-between gap-2.5 transition-colors">
+                <span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-iron rounded-full shrink-0"></span> File handling and data processing</span>
+                <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://en.cppreference.com/w/" target="_blank" rel="noopener noreferrer" class="hover-target text-[12px] text-pebble hover:text-bone uppercase tracking-nav-out flex items-center justify-between gap-2.5 transition-colors">
+                <span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-iron rounded-full shrink-0"></span> Software architecture and system design</span>
+                <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+              </a>
+            </li>
+            <li>
+              <button type="button" data-modal="os-env" class="w-full text-left hover-target text-[12px] text-pebble hover:text-arterial uppercase tracking-nav-out flex items-center justify-between gap-2.5 transition-colors">
+                <span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-arterial rounded-full shrink-0"></span> Computer architecture &amp; OS fundamentals</span>
+                <i class="ph ph-terminal-window text-xs text-arterial"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Systems Programming and Game Technology -->
+        <div class="bg-void border border-ash/30 rounded-[8px] p-[24px] flex flex-col justify-between min-h-[440px] group relative overflow-hidden reveal-up reveal-delay-3">
+          <div class="absolute inset-0 rounded-[8px] pointer-events-none shadow-glass-edge opacity-50"></div>
+          <div>
+            <div class="flex justify-between items-start mb-8">
+              <span class="text-caption text-ash uppercase tracking-nav-out">Domain III / Engines &amp; Graphics</span>
+              <button type="button" data-modal="graphics-api" class="hover-target text-ash hover:text-arterial transition-colors" title="Select Graphics API">
+                <i class="ph ph-arrow-up-right text-2xl"></i>
+              </button>
+            </div>
+            <h3 class="text-heading-sm font-bold uppercase text-bone mb-2">Systems &amp; Game Technology</h3>
+            <p class="text-body text-ash">High-performance runtime architecture, graphics pipelines, memory control, and real-time simulation.</p>
+          </div>
+
+          <ul class="flex flex-col gap-3.5 mt-8 border-t border-smoke pt-6">
+            <li>
+              <a href="https://wiki.osdev.org/" target="_blank" rel="noopener noreferrer" class="hover-target text-[12px] text-pebble hover:text-bone uppercase tracking-nav-out flex items-center justify-between gap-2.5 transition-colors">
+                <span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-arterial rounded-full shrink-0"></span> Operating system design</span>
+                <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.capcom.co.jp/ir/english/business/reengine.html" target="_blank" rel="noopener noreferrer" class="hover-target text-[12px] text-pebble hover:text-bone uppercase tracking-nav-out flex items-center justify-between gap-2.5 transition-colors">
+                <span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-arterial rounded-full shrink-0"></span> Game engine architecture</span>
+                <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+              </a>
+            </li>
+            <li>
+              <button type="button" data-modal="graphics-api" class="w-full text-left hover-target text-[12px] text-pebble hover:text-arterial uppercase tracking-nav-out flex items-center justify-between gap-2.5 transition-colors">
+                <span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-arterial rounded-full shrink-0"></span> Computer graphics and rendering</span>
+                <i class="ph ph-cube-focus text-xs text-arterial"></i>
+              </button>
+            </li>
+            <li>
+              <button type="button" data-modal="graphics-api" class="w-full text-left hover-target text-[12px] text-pebble hover:text-arterial uppercase tracking-nav-out flex items-center justify-between gap-2.5 transition-colors">
+                <span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-arterial rounded-full shrink-0"></span> Graphics APIs and GPU programming</span>
+                <i class="ph ph-sliders-horizontal text-xs text-arterial"></i>
+              </button>
+            </li>
+            <li>
+              <a href="https://en.cppreference.com/w/c/memory" target="_blank" rel="noopener noreferrer" class="hover-target text-[12px] text-pebble hover:text-bone uppercase tracking-nav-out flex items-center justify-between gap-2.5 transition-colors">
+                <span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-arterial rounded-full shrink-0"></span> Memory management &amp; optimization</span>
+                <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.blender.org/" target="_blank" rel="noopener noreferrer" class="hover-target text-[12px] text-pebble hover:text-bone uppercase tracking-nav-out flex items-center justify-between gap-2.5 transition-colors">
+                <span class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-arterial rounded-full shrink-0"></span> Real-time simulation &amp; interactive systems</span>
+                <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- 3. TOOLS AND TECHNOLOGIES -->
+      <div id="tools" class="mt-16 border-t border-smoke pt-14 reveal-up">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+          <div class="text-caption text-arterial uppercase tracking-nav-out">03 / Tools and Technologies — Interactive Learning Environment</div>
+          <div class="text-caption text-ash uppercase tracking-nav-out">Click Windows/Linux, Python/C, or Web Cards to Launch Environment Selector</div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Blender Direct Link -->
+          <a href="https://www.blender.org/" target="_blank" rel="noopener noreferrer" class="hover-target bg-charcoal border border-smoke hover:border-arterial rounded-[8px] p-5 flex items-start justify-between gap-4 transition-colors group">
+            <div class="flex items-start gap-4">
+              <i class="ph ph-cube text-2xl text-arterial shrink-0 mt-0.5"></i>
+              <div>
+                <h4 class="text-[13px] font-bold uppercase tracking-nav-out text-bone group-hover:text-arterial transition-colors mb-1">Blender</h4>
+                <p class="text-body text-ash">3D modelling and animation workflows.</p>
+              </div>
+            </div>
+            <i class="ph ph-arrow-up-right text-lg text-iron group-hover:text-arterial transition-colors shrink-0"></i>
+          </a>
+
+          <!-- Windows Card -> Opens Windows Developer / Debian Linux Choice Modal -->
+          <button type="button" data-modal="os-env" class="text-left hover-target bg-charcoal border border-smoke hover:border-arterial rounded-[8px] p-5 flex items-start justify-between gap-4 transition-colors group">
+            <div class="flex items-start gap-4">
+              <i class="ph ph-windows-logo text-2xl text-arterial shrink-0 mt-0.5"></i>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="text-[13px] font-bold uppercase tracking-nav-out text-bone group-hover:text-arterial transition-colors">Windows</h4>
+                  <span class="text-[9px] uppercase tracking-nav-out px-1.5 py-0.5 rounded bg-arterial/15 text-arterial border border-arterial/40">Select OS</span>
+                </div>
+                <p class="text-body text-ash">Desktop development and computing. Click to choose Windows Dev or Debian.</p>
+              </div>
+            </div>
+            <i class="ph ph-squares-four text-lg text-iron group-hover:text-arterial transition-colors shrink-0"></i>
+          </button>
+
+          <!-- Linux Card -> Opens Windows Developer / Debian Linux Choice Modal -->
+          <button type="button" data-modal="os-env" class="text-left hover-target bg-charcoal border border-smoke hover:border-arterial rounded-[8px] p-5 flex items-start justify-between gap-4 transition-colors group">
+            <div class="flex items-start gap-4">
+              <i class="ph ph-linux-logo text-2xl text-arterial shrink-0 mt-0.5"></i>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="text-[13px] font-bold uppercase tracking-nav-out text-bone group-hover:text-arterial transition-colors">Linux</h4>
+                  <span class="text-[9px] uppercase tracking-nav-out px-1.5 py-0.5 rounded bg-arterial/15 text-arterial border border-arterial/40">Select OS</span>
+                </div>
+                <p class="text-body text-ash">Operating system exploration &amp; development environments (Debian / Windows Dev).</p>
+              </div>
+            </div>
+            <i class="ph ph-squares-four text-lg text-iron group-hover:text-arterial transition-colors shrink-0"></i>
+          </button>
+
+          <!-- MySQL Direct Link -->
+          <a href="https://dev.mysql.com/doc/" target="_blank" rel="noopener noreferrer" class="hover-target bg-charcoal border border-smoke hover:border-arterial rounded-[8px] p-5 flex items-start justify-between gap-4 transition-colors group">
+            <div class="flex items-start gap-4">
+              <i class="ph ph-database text-2xl text-arterial shrink-0 mt-0.5"></i>
+              <div>
+                <h4 class="text-[13px] font-bold uppercase tracking-nav-out text-bone group-hover:text-arterial transition-colors mb-1">MySQL</h4>
+                <p class="text-body text-ash">Relational database management and SQL practice.</p>
+              </div>
+            </div>
+            <i class="ph ph-arrow-up-right text-lg text-iron group-hover:text-arterial transition-colors shrink-0"></i>
+          </a>
+
+          <!-- HTML, CSS, and JavaScript -> Opens Web Tech Choice Modal -->
+          <button type="button" data-modal="web-tech" class="text-left hover-target bg-charcoal border border-smoke hover:border-arterial rounded-[8px] p-5 flex items-start justify-between gap-4 transition-colors group">
+            <div class="flex items-start gap-4">
+              <i class="ph ph-globe text-2xl text-arterial shrink-0 mt-0.5"></i>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="text-[13px] font-bold uppercase tracking-nav-out text-bone group-hover:text-arterial transition-colors">HTML, CSS, &amp; JS</h4>
+                  <span class="text-[9px] uppercase tracking-nav-out px-1.5 py-0.5 rounded bg-arterial/15 text-arterial border border-arterial/40">Select Spec</span>
+                </div>
+                <p class="text-body text-ash">Web development and interactive interfaces (MDN / Specs).</p>
+              </div>
+            </div>
+            <i class="ph ph-squares-four text-lg text-iron group-hover:text-arterial transition-colors shrink-0"></i>
+          </button>
+
+          <!-- Python and C -> Opens Python & C Choice Modal -->
+          <button type="button" data-modal="python-c" class="text-left hover-target bg-charcoal border border-smoke hover:border-arterial rounded-[8px] p-5 flex items-start justify-between gap-4 transition-colors group">
+            <div class="flex items-start gap-4">
+              <i class="ph ph-terminal-window text-2xl text-arterial shrink-0 mt-0.5"></i>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <h4 class="text-[13px] font-bold uppercase tracking-nav-out text-bone group-hover:text-arterial transition-colors">Python and C</h4>
+                  <span class="text-[9px] uppercase tracking-nav-out px-1.5 py-0.5 rounded bg-arterial/15 text-arterial border border-arterial/40">Select Docs</span>
+                </div>
+                <p class="text-body text-ash">Programming and computer science fundamentals.</p>
+              </div>
+            </div>
+            <i class="ph ph-squares-four text-lg text-iron group-hover:text-arterial transition-colors shrink-0"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. EDUCATION, 5. HIGHER EDUCATION PLANS, 7. ENTREPRENEURSHIP, 8. CREATIVE INTERESTS (HIGH-CONTRAST LINEN SECTION) -->
+  <section id="education" class="bg-linen text-void py-section-lg px-6 md:px-12 relative z-10">
+    <div class="max-w-[1400px] mx-auto scroll-parallax" data-scroll-speed="0.03">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+        <!-- Left Sticky/Editorial Column -->
+        <div class="lg:col-span-4 flex flex-col justify-between reveal-up">
+          <div>
+            <div class="text-caption text-arterial uppercase tracking-nav-out mb-3">04, 05, 07 &amp; 08 / Pillars</div>
+            <h2 class="text-heading md:text-heading-lg font-bold uppercase tracking-tight mb-6">Academic, <br>Ventures &amp; <br>Narrative</h2>
+            <p class="text-body font-mono text-iron max-w-sm">
+              Connecting mathematics, programming, and computer science with Japanese higher education aspirations, product entrepreneurship, and interactive storytelling.
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-3 mt-12">
+            <button type="button" data-modal="mext-japan" class="text-left inline-flex text-[12px] uppercase tracking-nav-out text-void hover:text-arterial items-center gap-2 group hover-target w-max border-b border-iron pb-1 transition-colors">
+              Open MEXT &amp; Japan Portals <i class="ph ph-arrow-up-right text-lg group-hover:translate-x-1 transition-transform"></i>
+            </button>
+            <a href="#career" class="hidden lg:inline-flex text-[12px] uppercase tracking-nav-out text-void hover:text-arterial items-center gap-2 group hover-target w-max border-b border-iron pb-1 transition-colors">
+              Explore Career Objective <i class="ph ph-arrow-right text-lg group-hover:translate-x-2 transition-transform"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right 4-Quadrant Content Grid -->
+        <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+
+          <!-- 4. EDUCATION -->
+          <div class="block border-t border-iron pt-6 reveal-up reveal-delay-1 group">
+            <div class="text-caption text-arterial uppercase tracking-nav-out mb-2">04 / Education</div>
+            <h4 class="text-subheading font-bold uppercase mb-3 flex items-center justify-between">
+              <a href="https://www.cbse.gov.in/" target="_blank" rel="noopener noreferrer" class="hover-target hover:text-arterial transition-colors flex items-center gap-2">
+                Class 12 CBSE <i class="ph ph-arrow-up-right text-lg"></i>
+              </a>
+              <span class="font-serif italic text-body text-iron lowercase font-normal">india</span>
+            </h4>
+            <p class="text-body text-iron mb-4">
+              <strong>Current Education:</strong> Class 12, <a href="https://www.cbse.gov.in/" target="_blank" rel="noopener noreferrer" class="underline hover:text-arterial transition-colors hover-target">Central Board of Secondary Education (CBSE)</a>, India. My academic interests connect mathematics, programming, and computer science, providing a foundation for my long-term goals in software and systems engineering.
+            </p>
+            <div class="mt-4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-caption text-void uppercase tracking-nav-out font-semibold">Academic Subjects</span>
+                <a href="https://ncert.nic.in/" target="_blank" rel="noopener noreferrer" class="text-[10px] uppercase tracking-nav-out text-arterial hover:underline hover-target">NCERT Curriculum ↗</a>
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                <a href="https://ncert.nic.in/" target="_blank" rel="noopener noreferrer" class="hover-target text-[11px] uppercase tracking-nav-out px-2.5 py-1 border border-iron/40 hover:border-arterial hover:text-arterial rounded text-void transition-colors">Mathematics</a>
+                <a href="https://ncert.nic.in/" target="_blank" rel="noopener noreferrer" class="hover-target text-[11px] uppercase tracking-nav-out px-2.5 py-1 border border-iron/40 hover:border-arterial hover:text-arterial rounded text-void transition-colors">Physics</a>
+                <a href="https://ncert.nic.in/" target="_blank" rel="noopener noreferrer" class="hover-target text-[11px] uppercase tracking-nav-out px-2.5 py-1 border border-iron/40 hover:border-arterial hover:text-arterial rounded text-void transition-colors">Chemistry</a>
+                <a href="https://www.cbseacademic.nic.in/" target="_blank" rel="noopener noreferrer" class="hover-target text-[11px] uppercase tracking-nav-out px-2.5 py-1 border border-iron/40 hover:border-arterial hover:text-arterial rounded text-void transition-colors">Computer Science</a>
+                <a href="https://ncert.nic.in/" target="_blank" rel="noopener noreferrer" class="hover-target text-[11px] uppercase tracking-nav-out px-2.5 py-1 border border-iron/40 hover:border-arterial hover:text-arterial rounded text-void transition-colors">English</a>
+                <a href="https://ncert.nic.in/" target="_blank" rel="noopener noreferrer" class="hover-target text-[11px] uppercase tracking-nav-out px-2.5 py-1 border border-iron/40 hover:border-arterial hover:text-arterial rounded text-void transition-colors">Painting</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. HIGHER EDUCATION PLANS -->
+          <div id="japan" class="block border-t border-iron pt-6 reveal-up reveal-delay-2 group">
+            <div class="text-caption text-arterial uppercase tracking-nav-out mb-2">05 / Higher Education Plans</div>
+            <h4 class="text-subheading font-bold uppercase mb-3 flex items-center justify-between">
+              <a href="https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/" target="_blank" rel="noopener noreferrer" class="hover-target hover:text-arterial transition-colors flex items-center gap-2">
+                Studying in Japan <i class="ph ph-arrow-up-right text-lg"></i>
+              </a>
+              <span class="font-serif italic text-body text-iron lowercase font-normal">mext track</span>
+            </h4>
+            <p class="text-body text-iron mb-3">
+              I intend to pursue higher education in Japan, with a particular interest in the Japanese Government's <a href="https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/" target="_blank" rel="noopener noreferrer" class="text-void font-semibold underline decoration-arterial hover:text-arterial transition-colors hover-target">MEXT Specialized Training College scholarship</a> (<a href="https://www.in.emb-japan.go.jp/Education/japanese_government_scholarships.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-arterial transition-colors hover-target">Embassy of Japan in India</a>). Prospective fields include information processing, programming, software development, and game programming.
+            </p>
+            <ul class="text-body text-void space-y-2 mb-3">
+              <li class="flex items-center justify-between border-b border-iron/20 pb-1">
+                <a href="https://www.hal.ac.jp/tokyo" target="_blank" rel="noopener noreferrer" class="hover-target flex items-center gap-2 hover:text-arterial transition-colors">
+                  <span class="w-1.5 h-1.5 rounded-full bg-arterial"></span> <strong>HAL Tokyo:</strong> Game Programming
+                </a>
+                <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+              </li>
+              <li class="flex items-center justify-between border-b border-iron/20 pb-1">
+                <a href="https://www.jec.ac.jp/" target="_blank" rel="noopener noreferrer" class="hover-target flex items-center gap-2 hover:text-arterial transition-colors">
+                  <span class="w-1.5 h-1.5 rounded-full bg-arterial"></span> <strong>Japan Electronics College:</strong> Game Production
+                </a>
+                <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+              </li>
+              <li class="flex items-start justify-between pt-0.5">
+                <a href="https://www.kyutech.ac.jp/english/" target="_blank" rel="noopener noreferrer" class="hover-target flex items-start gap-2 hover:text-arterial transition-colors">
+                  <span class="w-1.5 h-1.5 rounded-full bg-void mt-2 shrink-0"></span>
+                  <span><strong>University Transfer Research:</strong> Kyushu Institute of Technology (Computer Science &amp; Engineering programs).</span>
+                </a>
+                <i class="ph ph-arrow-up-right text-xs text-iron shrink-0 mt-1"></i>
+              </li>
+            </ul>
+            <p class="text-[11px] text-iron italic leading-relaxed border-l-2 border-iron/40 pl-3">
+              These are prospective educational options. Admission, scholarship placement, and eligibility for university transfer remain subject to the relevant institutions' requirements.
+            </p>
+          </div>
+
+          <!-- 7. ENTREPRENEURSHIP -->
+          <div id="entrepreneurship" class="block border-t border-iron pt-6 reveal-up reveal-delay-1 group">
+            <div class="text-caption text-arterial uppercase tracking-nav-out mb-2">07 / Entrepreneurship</div>
+            <h4 class="text-subheading font-bold uppercase mb-3 flex items-center justify-between group-hover:text-arterial transition-colors">
+              Product Ventures
+              <span class="font-serif italic text-body text-iron lowercase font-normal">founder mindset</span>
+            </h4>
+            <p class="text-body text-iron mb-4">
+              Alongside my education and technical interests, I am interested in entrepreneurship and building technology-oriented products.
+            </p>
+            <p class="text-body text-iron mb-4">
+              I enjoy exploring ideas that combine software, hardware, and product development. My long-term interests include understanding how technical ideas can be developed into practical products and sustainable businesses.
+            </p>
+            <a href="mailto:tanujkhandelwal383@gmail.com?subject=Product%20%26%20Venture%20Collaboration" class="hover-target inline-flex items-center gap-2 text-[11px] uppercase tracking-nav-out text-void hover:text-arterial font-semibold border-b border-void/40 hover:border-arterial pb-0.5 transition-colors">
+              Discuss Product Ideas <i class="ph ph-arrow-up-right"></i>
+            </a>
+          </div>
+
+          <!-- 8. CREATIVE INTERESTS -->
+          <div id="creative" class="block border-t border-iron pt-6 reveal-up reveal-delay-2 group">
+            <div class="text-caption text-arterial uppercase tracking-nav-out mb-2">08 / Creative Interests</div>
+            <h4 class="text-subheading font-bold uppercase mb-3 flex items-center justify-between group-hover:text-arterial transition-colors">
+              Story &amp; Animation
+              <span class="font-serif italic text-body text-iron lowercase font-normal">narrative design</span>
+            </h4>
+            <p class="text-body text-iron mb-3">
+              My interests extend beyond programming into creative and narrative development—combining technical engineering with creative thinking to develop interactive experiences.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
+              <div>
+                <div class="text-caption text-void uppercase tracking-nav-out font-semibold mb-1.5">Creative Writing</div>
+                <ul class="text-[12px] text-iron space-y-1">
+                  <li>• Screenwriting &amp; episodic storytelling</li>
+                  <li>• Character development</li>
+                  <li>• Narrative structure</li>
+                  <li>• Worldbuilding</li>
+                  <li>• Interactive storytelling</li>
+                </ul>
+              </div>
+              <div>
+                <div class="text-caption text-void uppercase tracking-nav-out font-semibold mb-1.5">Animation &amp; Game Dev</div>
+                <ul class="text-[12px] text-iron space-y-1">
+                  <li>• Game design &amp; narrative dev</li>
+                  <li>• <a href="https://www.blender.org/features/animation/" target="_blank" rel="noopener noreferrer" class="underline hover:text-arterial hover-target">3D animation workflows ↗</a></li>
+                  <li>• <a href="https://www.blender.org/features/story-artist/" target="_blank" rel="noopener noreferrer" class="underline hover:text-arterial hover-target">3D models + 2D visual techniques ↗</a></li>
+                  <li>• Technology &amp; storytelling</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
 
-  <main>
-    <section id="about" class="section">
-      <h2>About Me</h2>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>I'm a passionate creative developer who bridges the gap between imagination and technology. My journey spans across web development, AI innovation, and immersive storytelling.</p>
-          <p>When I'm not coding, you'll find me crafting stories, designing user experiences, or dreaming up the next big innovation that could change how we interact with technology.</p>
-        </div>
-        <div class="about-image">🚀</div>
-      </div>
-    </section>
+  <!-- 6. CAREER OBJECTIVE (CHARCOAL CENTERPIECE SECTION) -->
+  <section id="career" class="py-section-lg px-6 md:px-12 bg-charcoal border-b border-smoke">
+    <div class="max-w-[1200px] mx-auto flex flex-col items-center scroll-parallax reveal-up" data-scroll-speed="0.03">
 
-    <section id="skills" class="section">
-      <h2>Skills & Expertise</h2>
-      <div class="skills-grid">
-        <div class="skill-item">
-          <div class="skill-name">Web Development</div>
-          <div class="skill-bar"><div class="skill-progress" data-width="90"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name">Python & AI</div>
-          <div class="skill-bar"><div class="skill-progress" data-width="85"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name">JavaScript</div>
-          <div class="skill-bar"><div class="skill-progress" data-width="88"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name">UI/UX Design</div>
-          <div class="skill-bar"><div class="skill-progress" data-width="80"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name">Creative Writing</div>
-          <div class="skill-bar"><div class="skill-progress" data-width="92"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-name">Game Development</div>
-          <div class="skill-bar"><div class="skill-progress" data-width="75"></div></div>
-        </div>
-      </div>
-    </section>
+      <div class="w-3 h-3 bg-arterial rounded-full mb-6 animate-pulse"></div>
+      <div class="text-caption text-arterial uppercase tracking-nav-out mb-4 text-center">06 / Career Objective &amp; Long-Term Vision</div>
 
-    <section id="projects" class="section">
-      <h2>Featured Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-image">🤖</div>
-          <div class="project-content">
-            <div class="project-title">AI Chat Assistant</div>
-            <div class="project-desc">An intelligent conversational AI built with advanced natural language processing capabilities.</div>
-            <div class="project-tech">
-              <span class="tech-tag">Python</span>
-              <span class="tech-tag">AI/ML</span>
-              <span class="tech-tag">NLP</span>
-            </div>
-          </div>
+      <h2 class="text-heading md:text-heading-lg font-bold uppercase text-bone mb-6 max-w-4xl mx-auto text-center">
+        Game Engine Architecture. <br>
+        <span class="font-serif italic font-light text-ash lowercase">Aspiring toward</span>
+        <a href="https://www.capcom.co.jp/ir/english/business/reengine.html" target="_blank" rel="noopener noreferrer" class="hover-target underline decoration-arterial/60 hover:text-arterial transition-colors">RE ENGINE</a>
+        &amp;
+        <a href="https://www.capcom.co.jp/ir/english/" target="_blank" rel="noopener noreferrer" class="hover-target underline decoration-iron hover:text-arterial transition-colors">Capcom</a>.
+      </h2>
+
+      <p class="text-body md:text-[16px] text-ash max-w-2xl mx-auto text-center mb-8 leading-relaxed">
+        My long-term career objective is to work in game engine development and systems engineering. I am particularly interested in the technologies behind modern game engines, including rendering systems, computer graphics, memory management, and performance optimization. One of my career aspirations is to work at <a href="https://www.capcom.co.jp/ir/english/" target="_blank" rel="noopener noreferrer" class="text-bone font-medium underline decoration-iron hover:text-arterial transition-colors hover-target">Capcom ↗</a> in engine development, particularly in work related to <a href="https://www.capcom.co.jp/ir/english/business/reengine.html" target="_blank" rel="noopener noreferrer" class="text-arterial font-medium underline hover:opacity-80 transition-opacity hover-target">RE ENGINE ↗</a>.
+      </p>
+
+      <!-- Areas I Want to Develop Expertise In (10 Linked Specializations) -->
+      <div class="w-full max-w-4xl bg-void/90 border border-smoke rounded-[8px] p-6 md:p-8 mb-10">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 border-b border-smoke pb-4">
+          <span class="text-caption text-bone uppercase tracking-nav-out">Areas I Want to Develop Expertise In (Click to Open Reference)</span>
+          <span class="text-caption text-arterial uppercase tracking-nav-out">10 Core Specializations</span>
         </div>
-        <div class="project-card">
-          <div class="project-image">🌐</div>
-          <div class="project-content">
-            <div class="project-title">Interactive Portfolio</div>
-            <div class="project-desc">A modern, responsive portfolio website with immersive animations and user interactions.</div>
-            <div class="project-tech">
-              <span class="tech-tag">HTML5</span>
-              <span class="tech-tag">CSS3</span>
-              <span class="tech-tag">JavaScript</span>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image">🎮</div>
-          <div class="project-content">
-            <div class="project-title">Interactive Games</div>
-            <div class="project-desc">Collection of browser-based games featuring engaging gameplay and stunning visuals.</div>
-            <div class="project-tech">
-              <span class="tech-tag">JavaScript</span>
-              <span class="tech-tag">Canvas</span>
-              <span class="tech-tag">WebGL</span>
-            </div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image">📱</div>
-          <div class="project-content">
-            <div class="project-title">Mobile App Prototypes</div>
-            <div class="project-desc">Innovative mobile app concepts focusing on user experience and cutting-edge functionality.</div>
-            <div class="project-tech">
-              <span class="tech-tag">React Native</span>
-              <span class="tech-tag">UI/UX</span>
-              <span class="tech-tag">Prototyping</span>
-            </div>
-          </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          <a href="https://en.cppreference.com/w/" target="_blank" rel="noopener noreferrer" class="hover-target border border-smoke hover:border-arterial rounded px-3.5 py-2.5 text-[12px] text-bone hover:text-arterial flex items-center justify-between gap-2 transition-colors">
+            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-arterial"></span> C and C++ programming</span>
+            <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+          </a>
+          <a href="https://wiki.osdev.org/" target="_blank" rel="noopener noreferrer" class="hover-target border border-smoke hover:border-arterial rounded px-3.5 py-2.5 text-[12px] text-bone hover:text-arterial flex items-center justify-between gap-2 transition-colors">
+            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-arterial"></span> Systems programming</span>
+            <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+          </a>
+          <button type="button" data-modal="os-env" class="text-left hover-target border border-smoke hover:border-arterial rounded px-3.5 py-2.5 text-[12px] text-bone hover:text-arterial flex items-center justify-between gap-2 transition-colors">
+            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-arterial"></span> Computer architecture</span>
+            <i class="ph ph-squares-four text-xs text-arterial"></i>
+          </button>
+          <a href="https://www.kernel.org/" target="_blank" rel="noopener noreferrer" class="hover-target border border-smoke hover:border-arterial rounded px-3.5 py-2.5 text-[12px] text-bone hover:text-arterial flex items-center justify-between gap-2 transition-colors">
+            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-arterial"></span> Operating system development</span>
+            <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+          </a>
+          <button type="button" data-modal="graphics-api" class="text-left hover-target border border-smoke hover:border-arterial rounded px-3.5 py-2.5 text-[12px] text-bone hover:text-arterial flex items-center justify-between gap-2 transition-colors">
+            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-arterial"></span> Computer graphics &amp; rendering</span>
+            <i class="ph ph-squares-four text-xs text-arterial"></i>
+          </button>
+          <button type="button" data-modal="graphics-api" class="text-left hover-target border border-smoke hover:border-arterial rounded px-3.5 py-2.5 text-[12px] text-bone hover:text-arterial flex items-center justify-between gap-2 transition-colors">
+            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-arterial"></span> Graphics APIs &amp; GPU programming</span>
+            <i class="ph ph-squares-four text-xs text-arterial"></i>
+          </button>
+          <a href="https://en.cppreference.com/w/cpp/thread" target="_blank" rel="noopener noreferrer" class="hover-target border border-smoke hover:border-arterial rounded px-3.5 py-2.5 text-[12px] text-bone hover:text-arterial flex items-center justify-between gap-2 transition-colors">
+            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-arterial"></span> Multithreading &amp; memory management</span>
+            <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+          </a>
+          <a href="https://www.capcom.co.jp/ir/english/business/reengine.html" target="_blank" rel="noopener noreferrer" class="hover-target border border-smoke hover:border-arterial rounded px-3.5 py-2.5 text-[12px] text-bone hover:text-arterial flex items-center justify-between gap-2 transition-colors">
+            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-arterial"></span> Game engine architecture</span>
+            <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+          </a>
+          <a href="https://en.cppreference.com/w/c/memory" target="_blank" rel="noopener noreferrer" class="hover-target border border-smoke hover:border-arterial rounded px-3.5 py-2.5 text-[12px] text-bone hover:text-arterial flex items-center justify-between gap-2 transition-colors">
+            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-arterial"></span> Performance optimization</span>
+            <i class="ph ph-arrow-up-right text-xs text-iron"></i>
+          </a>
+          <button type="button" data-modal="os-env" class="text-left hover-target border border-smoke hover:border-arterial rounded px-3.5 py-2.5 text-[12px] text-bone hover:text-arterial flex items-center justify-between gap-2 transition-colors sm:col-span-2 md:col-span-3">
+            <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-arterial"></span> Software design and development tools — Building theoretical knowledge &amp; practical programming ability to contribute to complex software systems.</span>
+            <i class="ph ph-arrow-up-right text-xs text-arterial shrink-0"></i>
+          </button>
         </div>
       </div>
-    </section>
 
-    <section id="aetheron" class="section card">
-      <h2>Aetheron Studios</h2>
-      <p style="font-size: 1.2rem; line-height: 1.8; color: var(--sub); text-align: center;">Aetheron Studios is my creative-tech startup initiative dedicated to building immersive experiences that merge storytelling, interactive media, and artificial intelligence. From games and apps to original animations and sci-fi IPs, Aetheron is where code meets imagination. Stay tuned for upcoming projects, collaborations, and a universe built from innovation and passion.</p>
-    </section>
-
-    <section id="goals" class="section">
-      <h2>Future Goals</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-image">🚀</div>
-          <div class="project-content">
-            <div class="project-title">Launch AI Startup</div>
-            <div class="project-desc">Building the next generation of AI-powered solutions that revolutionize human-computer interaction.</div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image">💻</div>
-          <div class="project-content">
-            <div class="project-title">Custom Operating System</div>
-            <div class="project-desc">Developing a cutting-edge OS that reimagines how we interact with our digital environment.</div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image">🎭</div>
-          <div class="project-content">
-            <div class="project-title">Original Anime Series</div>
-            <div class="project-desc">Creating compelling animated stories that blend technology, philosophy, and human emotion.</div>
-          </div>
-        </div>
-        <div class="project-card">
-          <div class="project-image">📚</div>
-          <div class="project-content">
-            <div class="project-title">Bestselling Novels</div>
-            <div class="project-desc">Crafting science fiction narratives that explore the intersection of humanity and technology.</div>
-          </div>
-        </div>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://www.capcom.co.jp/ir/english/business/reengine.html" target="_blank" rel="noopener noreferrer" class="hover-target border border-iron hover:border-bone rounded-[8px] px-7 py-4 text-[12px] uppercase tracking-nav-out text-bone transition-colors flex items-center gap-3 group">
+          Explore RE ENGINE Tech <i class="ph ph-arrow-up-right text-lg group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+        </a>
+        <a href="mailto:tanujkhandelwal383@gmail.com" class="hover-target border border-arterial bg-arterial/10 rounded-[8px] px-8 py-4 text-[12px] uppercase tracking-nav-out text-bone hover:bg-arterial transition-colors flex items-center gap-3 group">
+          Initiate Correspondence <i class="ph ph-arrow-right text-lg group-hover:translate-x-1 transition-transform"></i>
+        </a>
       </div>
-    </section>
 
-    <section id="contact" class="section">
-      <h2>Let's Connect</h2>
-      <div class="contact-container">
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-icon">📧</div>
-            <div>
-              <h3>Email</h3>
-              <a href="mailto:tanujkhandelwal383@gmail.com" style="color: var(--accent);">tanujkhandelwal383@gmail.com</a>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">💼</div>
-            <div>
-              <h3>Professional</h3>
-              <p>Open for collaborations and opportunities</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">🌍</div>
-            <div>
-              <h3>Location</h3>
-              <p>Available for remote work worldwide</p>
-            </div>
-          </div>
-        </div>
-        <div class="contact-form">
-          <div class="form-group">
-            <input type="text" class="form-input" placeholder=" " required>
-            <label class="form-label">Your Name</label>
-          </div>
-          <div class="form-group">
-            <input type="email" class="form-input" placeholder=" " required>
-            <label class="form-label">Email Address</label>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-input" placeholder=" ">
-            <label class="form-label">Subject</label>
-          </div>
-          <div class="form-group">
-            <textarea class="form-textarea" rows="5" placeholder="Your message..."></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="social-links">
-        <a href="#" class="social-link">📧</a>
-        <a href="#" class="social-link">💼</a>
-        <a href="#" class="social-link">🐙</a>
-        <a href="#" class="social-link">🐦</a>
-      </div>
-      <p>&copy; 2025 Tanuj Sharma. All rights reserved. Built with passion and code.</p>
     </div>
-  </footer>
+  </section>
 
-  <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+</main>
 
-  <script>
-    // Enhanced Preloader with Progress Animation
-    let progress = 0;
-    const progressBar = document.querySelector('.progress-fill');
-    const preloader = document.getElementById('preloader');
-    
-    const progressInterval = setInterval(() => {
-      progress += Math.random() * 15;
-      if (progress > 100) progress = 100;
-      progressBar.style.width = progress + '%';
-      
-      if (progress >= 100) {
-        clearInterval(progressInterval);
-        setTimeout(() => {
-          preloader.style.opacity = '0';
-          setTimeout(() => {
-            preloader.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            initializeAnimations();
-          }, 500);
-        }, 800);
-      }
-    }, 100);
+<!-- 11. CONTACT INFORMATION & ARCHITECTURAL FOOTER -->
+<footer id="aetheron-footer" class="bg-charcoal min-h-screen flex flex-col justify-between pt-28 pb-8 px-6 md:px-12 relative z-20">
+  <div id="contact" class="max-w-[1400px] w-full mx-auto flex-grow flex flex-col justify-center">
 
-    // Custom Cursor
-    const cursor = document.querySelector('.cursor');
-    const cursorFollower = document.querySelector('.cursor-follower');
-    let mouseX = 0, mouseY = 0;
-    let followerX = 0, followerY = 0;
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-x-8 gap-y-14 mb-20 border-b border-smoke pb-20">
 
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
-    });
+      <!-- Brand Identity Column -->
+      <div class="col-span-2 md:col-span-4 xl:col-span-2 flex flex-col">
+        <a href="#hero-section" class="inline-flex items-center gap-2.5 mb-8 hover-target">
+          <span class="text-[24px] md:text-[28px] font-bold tracking-[-0.06em] uppercase text-bone">TANUJ SHARMA</span>
+          <span class="w-3 h-3 rounded-full bg-arterial"></span>
+        </a>
+        <p class="text-[14px] text-bone font-medium leading-relaxed mb-2">
+          Student | Aspiring Systems Programmer |<br>Game Engine Developer | Startup Founder
+        </p>
+        <p class="text-[14px] text-ash italic font-serif">Based in India • Aspiring toward Japan.</p>
+      </div>
 
-    function animateFollower() {
-      followerX += (mouseX - followerX) * 0.1;
-      followerY += (mouseY - followerY) * 0.1;
-      cursorFollower.style.left = followerX + 'px';
-      cursorFollower.style.top = followerY + 'px';
-      requestAnimationFrame(animateFollower);
-    }
-    animateFollower();
+      <!-- Column 1: Technical Interests -->
+      <div class="flex flex-col gap-3.5">
+        <span class="text-caption text-iron uppercase tracking-nav-out mb-2">Technical Interests</span>
+        <a href="https://wiki.osdev.org/" target="_blank" rel="noopener noreferrer" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target flex items-center gap-1">Systems Programming <i class="ph ph-arrow-up-right text-[10px]"></i></a>
+        <a href="https://www.capcom.co.jp/ir/english/business/reengine.html" target="_blank" rel="noopener noreferrer" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target flex items-center gap-1">Game Engine Dev <i class="ph ph-arrow-up-right text-[10px]"></i></a>
+        <button type="button" data-modal="graphics-api" class="text-left text-[12px] uppercase tracking-nav-out text-ash hover:text-arterial transition-colors hover-target flex items-center gap-1">Computer Graphics <i class="ph ph-squares-four text-[11px]"></i></button>
+        <a href="https://en.cppreference.com/w/" target="_blank" rel="noopener noreferrer" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target flex items-center gap-1">Software Engineering <i class="ph ph-arrow-up-right text-[10px]"></i></a>
+        <button type="button" data-modal="web-tech" class="text-left text-[12px] uppercase tracking-nav-out text-ash hover:text-arterial transition-colors hover-target flex items-center gap-1">Web Development <i class="ph ph-squares-four text-[11px]"></i></button>
+      </div>
 
-    // Enhanced cursor interactions
-    document.querySelectorAll('a, button, .card, .project-card').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        cursorFollower.style.transform = 'translate(-50%, -50%) scale(2)';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-        cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
-      });
-    });
+      <!-- Column 2: Creative Interests -->
+      <div class="flex flex-col gap-3.5">
+        <span class="text-caption text-iron uppercase tracking-nav-out mb-2">Creative Interests</span>
+        <a href="#creative" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">Game Development</a>
+        <a href="#creative" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">Creative Writing</a>
+        <a href="#creative" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">Narrative Design</a>
+        <a href="#creative" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">Worldbuilding</a>
+        <a href="https://www.blender.org/features/animation/" target="_blank" rel="noopener noreferrer" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target flex items-center gap-1">3D Animation <i class="ph ph-arrow-up-right text-[10px]"></i></a>
+      </div>
 
-    // Scroll Progress Bar
-    window.addEventListener('scroll', () => {
-      const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      document.querySelector('.scroll-progress').style.width = scrolled + '%';
-      
-      // Nav scroll effect
-      const nav = document.querySelector('nav');
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
+      <!-- Column 3: Languages & Tools (Interactive Modals + Direct Portals) -->
+      <div class="flex flex-col gap-3.5">
+        <span class="text-caption text-iron uppercase tracking-nav-out mb-2">Languages &amp; Tools</span>
+        <button type="button" data-modal="python-c" class="text-left text-[12px] uppercase tracking-nav-out text-ash hover:text-arterial transition-colors hover-target flex items-center gap-1">Python &amp; C <i class="ph ph-squares-four text-[11px]"></i></button>
+        <a href="https://dev.mysql.com/doc/" target="_blank" rel="noopener noreferrer" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target flex items-center gap-1">SQL &amp; MySQL <i class="ph ph-arrow-up-right text-[10px]"></i></a>
+        <button type="button" data-modal="web-tech" class="text-left text-[12px] uppercase tracking-nav-out text-ash hover:text-arterial transition-colors hover-target flex items-center gap-1">HTML, CSS &amp; JS <i class="ph ph-squares-four text-[11px]"></i></button>
+        <button type="button" data-modal="os-env" class="text-left text-[12px] uppercase tracking-nav-out text-ash hover:text-arterial transition-colors hover-target flex items-center gap-1">Linux &amp; Windows <i class="ph ph-squares-four text-[11px]"></i></button>
+        <a href="https://www.blender.org/" target="_blank" rel="noopener noreferrer" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target flex items-center gap-1">Blender 3D <i class="ph ph-arrow-up-right text-[10px]"></i></a>
+      </div>
 
-    // Intersection Observer for Animations
-    function initializeAnimations() {
-      const sections = document.querySelectorAll('.section');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            
-            // Animate skill bars
-            if (entry.target.id === 'skills') {
-              setTimeout(() => {
-                document.querySelectorAll('.skill-progress').forEach(bar => {
-                  const width = bar.getAttribute('data-width');
-                  bar.style.width = width + '%';
-                });
-              }, 500);
-            }
+      <!-- Column 4: Japan Higher Ed Research (Official External Links) -->
+      <div class="flex flex-col gap-3.5">
+        <span class="text-caption text-iron uppercase tracking-nav-out mb-2">Japan Education</span>
+        <a href="https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/" target="_blank" rel="noopener noreferrer" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-arterial transition-colors hover-target flex items-center gap-1">MEXT Scholarship <i class="ph ph-arrow-up-right text-[10px]"></i></a>
+        <a href="https://www.hal.ac.jp/tokyo" target="_blank" rel="noopener noreferrer" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target flex items-center gap-1">HAL Tokyo <i class="ph ph-arrow-up-right text-[10px]"></i></a>
+        <a href="https://www.jec.ac.jp/" target="_blank" rel="noopener noreferrer" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target flex items-center gap-1">Japan Electronics <i class="ph ph-arrow-up-right text-[10px]"></i></a>
+        <a href="https://www.kyutech.ac.jp/english/" target="_blank" rel="noopener noreferrer" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target flex items-center gap-1">Kyutech Transfer <i class="ph ph-arrow-up-right text-[10px]"></i></a>
+      </div>
+
+      <!-- Column 5: Dossier Sections (Internal Smooth Scroll) -->
+      <div class="flex flex-col gap-3.5">
+        <span class="text-caption text-iron uppercase tracking-nav-out mb-2">Index</span>
+        <a href="#about" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">01. About Me</a>
+        <a href="#skills" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">02. Technical Skills</a>
+        <a href="#tools" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">03. Tools &amp; Tech</a>
+        <a href="#education" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">04. Education</a>
+        <a href="#career" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">06. Career Objective</a>
+        <a href="#objectives" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target">09. Learning Goals</a>
+      </div>
+
+      <!-- Column 6: Career Focus (External Portals) -->
+      <div class="flex flex-col gap-3.5">
+        <span class="text-caption text-iron uppercase tracking-nav-out mb-2">Aspiration</span>
+        <a href="https://www.capcom.co.jp/ir/english/business/reengine.html" target="_blank" rel="noopener noreferrer" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-arterial transition-colors hover-target flex items-center gap-1">RE ENGINE <i class="ph ph-arrow-up-right text-[10px]"></i></a>
+        <a href="https://www.capcom.co.jp/ir/english/" target="_blank" rel="noopener noreferrer" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target flex items-center gap-1">Capcom Global <i class="ph ph-arrow-up-right text-[10px]"></i></a>
+        <button type="button" data-modal="graphics-api" class="text-left text-[12px] uppercase tracking-nav-out text-ash hover:text-arterial transition-colors hover-target flex items-center gap-1">Rendering APIs <i class="ph ph-squares-four text-[11px]"></i></button>
+        <a href="https://www.kernel.org/" target="_blank" rel="noopener noreferrer" class="text-[12px] uppercase tracking-nav-out text-ash hover:text-bone transition-colors hover-target flex items-center gap-1">OS Kernel Design <i class="ph ph-arrow-up-right text-[10px]"></i></a>
+      </div>
+
+    </div>
+
+    <!-- 11. CONTACT INFORMATION ROW -->
+    <div class="flex flex-wrap gap-x-14 gap-y-6 mb-16">
+      <div class="flex flex-col">
+        <span class="text-[10px] text-iron uppercase tracking-nav-out mb-1">Name</span>
+        <span class="text-[14px] text-bone">Tanuj Sharma</span>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-[10px] text-iron uppercase tracking-nav-out mb-1">Location</span>
+        <a href="https://www.in.emb-japan.go.jp/Education/japanese_government_scholarships.html" target="_blank" rel="noopener noreferrer" class="text-[14px] text-bone hover:text-arterial transition-colors hover-target">India</a>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-[10px] text-iron uppercase tracking-nav-out mb-1">Direct Email</span>
+        <a href="mailto:tanujkhandelwal383@gmail.com" class="text-[14px] text-bone hover:text-arterial transition-colors hover-target">tanujkhandelwal383@gmail.com</a>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-[10px] text-iron uppercase tracking-nav-out mb-1">GitHub</span>
+        <button type="button" data-modal="social-status" class="text-left text-[14px] text-ash italic hover:text-arterial transition-colors hover-target flex items-center gap-1.5">
+          To be added <i class="ph ph-info text-xs text-arterial"></i>
+        </button>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-[10px] text-iron uppercase tracking-nav-out mb-1">LinkedIn</span>
+        <button type="button" data-modal="social-status" class="text-left text-[14px] text-ash italic hover:text-arterial transition-colors hover-target flex items-center gap-1.5">
+          To be added <i class="ph ph-info text-xs text-arterial"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer Copyright & Interest Summary Bar -->
+  <div class="max-w-[1400px] w-full mx-auto flex flex-col lg:flex-row justify-between items-center gap-6 pt-8 border-t border-smoke">
+    <p class="text-[10px] text-iron uppercase tracking-nav-out-wide text-center lg:text-left">
+      © 2026 TANUJ SHARMA. ALL RIGHTS RESERVED.
+    </p>
+    <div class="flex flex-wrap justify-center lg:justify-end gap-x-3 gap-y-2">
+      <a href="https://wiki.osdev.org/" target="_blank" rel="noopener noreferrer" class="text-[10px] text-iron hover:text-bone uppercase tracking-nav-out transition-colors hover-target">Systems Programming</a>
+      <span class="text-[10px] text-smoke">•</span>
+      <a href="https://www.capcom.co.jp/ir/english/business/reengine.html" target="_blank" rel="noopener noreferrer" class="text-[10px] text-iron hover:text-bone uppercase tracking-nav-out transition-colors hover-target">Game Engine Development</a>
+      <span class="text-[10px] text-smoke">•</span>
+      <button type="button" data-modal="graphics-api" class="text-[10px] text-iron hover:text-arterial uppercase tracking-nav-out transition-colors hover-target">Computer Graphics</button>
+      <span class="text-[10px] text-smoke">•</span>
+      <a href="#creative" class="text-[10px] text-iron hover:text-bone uppercase tracking-nav-out transition-colors hover-target">Creative Writing</a>
+      <span class="text-[10px] text-smoke">•</span>
+      <a href="#creative" class="text-[10px] text-iron hover:text-bone uppercase tracking-nav-out transition-colors hover-target">Narrative Design</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mainNav = document.getElementById('main-nav');
+    const footer = document.getElementById('aetheron-footer');
+    const scrollParallaxEls = document.querySelectorAll('.scroll-parallax');
+
+    // Interactive Choice Modal Data & Logic
+    const modalConfigs = {
+      'os-env': {
+        eyebrow: 'OPERATING SYSTEM ENVIRONMENT',
+        title: 'Select Development Platform',
+        description: 'Choose which operating system environment portal you would like to launch:',
+        options: [
+          {
+            label: 'Windows Developer',
+            subtitle: 'Microsoft Windows Dev Center & Win32 / Desktop SDKs',
+            icon: 'ph-windows-logo',
+            url: 'https://developer.microsoft.com/en-us/windows'
+          },
+          {
+            label: 'Debian Linux',
+            subtitle: 'The Universal Operating System & Linux Environment',
+            icon: 'ph-linux-logo',
+            url: 'https://www.debian.org/'
           }
-        });
-      }, { threshold: 0.1 });
-
-      sections.forEach(section => observer.observe(section));
-    }
-
-    // Enhanced 3D Tilt Effect
-    document.querySelectorAll('.card, .project-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const cx = rect.width / 2;
-        const cy = rect.height / 2;
-        const dx = (x - cx) / cx;
-        const dy = (y - cy) / cy;
-        
-        card.style.transform = `
-          perspective(1000px)
-          rotateY(${dx * 10}deg)
-          rotateX(${-dy * 10}deg)
-          translateZ(20px)
-        `;
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateZ(0)';
-      });
-    });
-
-    // Smooth Navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-          
-          // Update active nav link
-          document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.classList.remove('active');
-          });
-          this.classList.add('active');
-        }
-      });
-    });
-
-    // Dynamic Particle System
-    function createParticles() {
-      const particleCount = 50;
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
-        particle.style.animationDelay = Math.random() * 5 + 's';
-        particle.style.opacity = Math.random() * 0.5 + 0.1;
-        
-        const size = Math.random() * 6 + 2;
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        
-        // Random movement animation
-        particle.style.animation = `
-          floatParticle ${20 + Math.random() * 10}s infinite ease-in-out,
-          pulse ${2 + Math.random() * 3}s infinite ease-in-out
-        `;
-        
-        document.body.appendChild(particle);
+        ]
+      },
+      'graphics-api': {
+        eyebrow: 'COMPUTER GRAPHICS & GPU PIPELINES',
+        title: 'Select Graphics API Specification',
+        description: 'Explore low-level rendering specifications, shader pipelines, and GPU programming documentation:',
+        options: [
+          {
+            label: 'Vulkan API',
+            subtitle: 'Khronos Group high-efficiency cross-platform GPU API',
+            icon: 'ph-fire',
+            url: 'https://www.vulkan.org/'
+          },
+          {
+            label: 'DirectX / Direct3D',
+            subtitle: 'Microsoft DirectX graphics & high-performance rendering',
+            icon: 'ph-windows-logo',
+            url: 'https://learn.microsoft.com/en-us/windows/win32/direct3d'
+          },
+          {
+            label: 'OpenGL',
+            subtitle: 'Cross-language, cross-platform 2D & 3D rendering API',
+            icon: 'ph-cube-transparent',
+            url: 'https://www.opengl.org/'
+          },
+          {
+            label: 'Capcom RE ENGINE',
+            subtitle: 'Capcom proprietary next-generation game engine R&D',
+            icon: 'ph-game-controller',
+            url: 'https://www.capcom.co.jp/ir/english/business/reengine.html'
+          }
+        ]
+      },
+      'python-c': {
+        eyebrow: 'CORE PROGRAMMING LANGUAGES',
+        title: 'Select Language Reference',
+        description: 'Open official documentation for foundational programming, data structures, and systems development:',
+        options: [
+          {
+            label: 'Python 3 Docs',
+            subtitle: 'Programming fundamentals, data structures & file I/O',
+            icon: 'ph-file-py',
+            url: 'https://docs.python.org/3/'
+          },
+          {
+            label: 'C Reference (ISO C)',
+            subtitle: 'Low-level systems programming & memory architecture',
+            icon: 'ph-terminal-window',
+            url: 'https://en.cppreference.com/w/c'
+          }
+        ]
+      },
+      'web-tech': {
+        eyebrow: 'CLIENT-SIDE WEB TECHNOLOGIES',
+        title: 'Select Web Documentation',
+        description: 'Access official MDN documentation for structuring, styling, and scripting interactive web experiences:',
+        options: [
+          {
+            label: 'MDN Web Docs Hub',
+            subtitle: 'Comprehensive web platform documentation',
+            icon: 'ph-globe',
+            url: 'https://developer.mozilla.org/'
+          },
+          {
+            label: 'HTML5 Specification',
+            subtitle: 'Structuring web pages and semantic content',
+            icon: 'ph-file-html',
+            url: 'https://developer.mozilla.org/en-US/docs/Web/HTML'
+          },
+          {
+            label: 'CSS3 Styling & Layout',
+            subtitle: 'Visual presentation, responsive grids & animations',
+            icon: 'ph-file-css',
+            url: 'https://developer.mozilla.org/en-US/docs/Web/CSS'
+          },
+          {
+            label: 'JavaScript Runtime',
+            subtitle: 'Client-side logic and interactive functionality',
+            icon: 'ph-file-js',
+            url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'
+          }
+        ]
+      },
+      'mext-japan': {
+        eyebrow: 'HIGHER EDUCATION IN JAPAN',
+        title: 'Select Institution or Scholarship',
+        description: 'Explore official portals for the Japanese Government MEXT scholarship and prospective institutions:',
+        options: [
+          {
+            label: 'Study in Japan (MEXT)',
+            subtitle: 'Official JASSO & MEXT Scholarship information portal',
+            icon: 'ph-graduation-cap',
+            url: 'https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/'
+          },
+          {
+            label: 'Embassy of Japan (India)',
+            subtitle: 'MEXT Specialized Training College Scholarship guidelines',
+            icon: 'ph-bank',
+            url: 'https://www.in.emb-japan.go.jp/Education/japanese_government_scholarships.html'
+          },
+          {
+            label: 'HAL Tokyo & JEC',
+            subtitle: 'HAL Tokyo Game Programming portal',
+            icon: 'ph-game-controller',
+            url: 'https://www.hal.ac.jp/tokyo'
+          },
+          {
+            label: 'Kyutech (University Transfer)',
+            subtitle: 'Kyushu Institute of Technology CS & Engineering',
+            icon: 'ph-buildings',
+            url: 'https://www.kyutech.ac.jp/english/'
+          }
+        ]
+      },
+      'social-status': {
+        eyebrow: 'DEVELOPER REPOSITORIES & NETWORK',
+        title: 'Profile Status: In Preparation',
+        description: 'Tanuj Sharma’s public GitHub repositories and LinkedIn profile are currently being curated and will be linked soon. You can reach out directly via email in the meantime:',
+        options: [
+          {
+            label: 'Send Direct Email',
+            subtitle: 'tanujkhandelwal383@gmail.com',
+            icon: 'ph-envelope-simple',
+            url: 'mailto:tanujkhandelwal383@gmail.com',
+            sameTab: true
+          },
+          {
+            label: 'Explore GitHub Platform',
+            subtitle: 'Official GitHub home',
+            icon: 'ph-github-logo',
+            url: 'https://github.com/'
+          }
+        ]
       }
-    }
-    
-    // Theme Toggle
-    function toggleTheme() {
-      document.body.classList.toggle('light-mode');
-      const isLight = document.body.classList.contains('light-mode');
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    }
-
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      document.body.classList.add('light-mode');
-    }
-
-    // Form Animation
-    document.querySelectorAll('.form-input').forEach(input => {
-      input.addEventListener('focus', () => {
-        input.parentElement.style.transform = 'scale(1.02)';
-      });
-      input.addEventListener('blur', () => {
-        input.parentElement.style.transform = 'scale(1)';
-      });
-    });
-
-    // Contact Form Submission
-    document.querySelector('.contact-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const button = e.target.querySelector('button');
-      button.textContent = 'Sending...';
-      button.style.background = 'linear-gradient(135deg, #00aa00, #006600)';
-      
-      setTimeout(() => {
-        button.textContent = 'Message Sent! ✨';
-        setTimeout(() => {
-          button.textContent = 'Send Message';
-          button.style.background = '';
-          e.target.reset();
-        }, 2000);
-      }, 1500);
-    });
-
-    // Parallax Effect
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
-      document.querySelector('.bg-animation').style.transform = `translateY(${rate}px)`;
-    });
-
-    // Initialize particles after load
-    window.addEventListener('load', () => {
-      createParticles();
-    });
-
-    // Add floating animation keyframes dynamically
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes floatParticle {
-        0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-        25% { transform: translateY(-20px) translateX(10px) rotate(90deg); }
-        50% { transform: translateY(-40px) translateX(-10px) rotate(180deg); }
-        75% { transform: translateY(-20px) translateX(15px) rotate(270deg); }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Add scroll-triggered animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
     };
 
-    const animationObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
-        }
-      });
-    }, observerOptions);
+    const modalBackdrop = document.getElementById('choice-modal-backdrop');
+    const modalEyebrow = document.getElementById('modal-eyebrow');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const modalOptionsGrid = document.getElementById('modal-options-grid');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const cursor = document.getElementById('custom-cursor');
 
-    // Performance optimization: Throttle scroll events
-    let ticking = false;
-    function updateScrollEffects() {
-      // Update scroll progress
-      const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      document.querySelector('.scroll-progress').style.width = scrolled + '%';
-      
-      // Update parallax
-      const rate = window.pageYOffset * -0.3;
-      document.querySelector('.bg-animation').style.transform = `translateY(${rate}px)`;
-      
-      ticking = false;
+    function openChoiceModal(key) {
+      const config = modalConfigs[key];
+      if (!config) return;
+
+      modalEyebrow.textContent = config.eyebrow;
+      modalTitle.textContent = config.title;
+      modalDescription.textContent = config.description;
+      modalOptionsGrid.innerHTML = '';
+
+      config.options.forEach(opt => {
+        const link = document.createElement('a');
+        link.href = opt.url;
+        if (!opt.sameTab) {
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        }
+        link.className = 'hover-target bg-void border border-smoke hover:border-arterial rounded-[8px] p-4 flex flex-col justify-between gap-3 group transition-all duration-300 hover:bg-arterial/5';
+        link.innerHTML = `
+          <div class="flex items-center justify-between">
+            <i class="ph ${opt.icon} text-2xl text-arterial"></i>
+            <i class="ph ph-arrow-up-right text-lg text-iron group-hover:text-arterial group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"></i>
+          </div>
+          <div>
+            <div class="text-[13px] font-bold uppercase tracking-nav-out text-bone group-hover:text-arterial transition-colors mb-1">${opt.label}</div>
+            <div class="text-[12px] text-ash leading-snug">${opt.subtitle}</div>
+          </div>
+        `;
+        link.addEventListener('mouseenter', () => cursor && cursor.classList.add('hovering'));
+        link.addEventListener('mouseleave', () => cursor && cursor.classList.remove('hovering'));
+        link.addEventListener('click', () => {
+          setTimeout(closeChoiceModal, 150);
+        });
+        modalOptionsGrid.appendChild(link);
+      });
+
+      modalBackdrop.classList.add('active');
+      modalBackdrop.setAttribute('aria-hidden', 'false');
     }
 
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateScrollEffects);
-        ticking = true;
+    function closeChoiceModal() {
+      modalBackdrop.classList.remove('active');
+      modalBackdrop.setAttribute('aria-hidden', 'true');
+    }
+
+    document.querySelectorAll('[data-modal]').forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openChoiceModal(trigger.getAttribute('data-modal'));
+      });
+    });
+
+    modalCloseBtn.addEventListener('click', closeChoiceModal);
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) closeChoiceModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalBackdrop.classList.contains('active')) {
+        closeChoiceModal();
       }
     });
-  </script>
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 80) {
+        mainNav.classList.add('scrolled');
+      } else {
+        mainNav.classList.remove('scrolled');
+      }
+
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect();
+        if (footerRect.top < window.innerHeight - 150) {
+          mainNav.classList.add('hidden-on-footer');
+        } else {
+          mainNav.classList.remove('hidden-on-footer');
+        }
+      }
+
+      scrollParallaxEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const speed = parseFloat(el.getAttribute('data-scroll-speed')) || 0.05;
+          const centerOffset = window.innerHeight / 2;
+          const elementCenter = rect.top + (rect.height / 2);
+          const yPos = (elementCenter - centerOffset) * speed;
+          el.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        }
+      });
+    });
+
+    const revealElements = document.querySelectorAll('.reveal-up');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        } else {
+          entry.target.classList.remove('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.05,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    const hoverTargets = document.querySelectorAll('.hover-target, a, button');
+
+    if (window.matchMedia("(pointer: fine)").matches) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+
+      hoverTargets.forEach(target => {
+        target.addEventListener('mouseenter', () => {
+          cursor.classList.add('hovering');
+        });
+        target.addEventListener('mouseleave', () => {
+          cursor.classList.remove('hovering');
+        });
+      });
+
+      const parallaxElements = document.querySelectorAll('.parallax-el');
+      const heroSection = document.getElementById('hero-section');
+
+      if (heroSection) {
+        document.addEventListener('mousemove', (e) => {
+          const rect = heroSection.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const x = (e.clientX - window.innerWidth / 2);
+            const y = (e.clientY - window.innerHeight / 2);
+
+            parallaxElements.forEach(el => {
+              const speed = el.getAttribute('data-speed') || 0.02;
+              const xOffset = x * speed;
+              const yOffset = y * speed;
+              el.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+          }
+        });
+      }
+
+    } else {
+      cursor.style.display = 'none';
+      document.body.style.cursor = 'auto';
+    }
+
+    const bgShape = document.querySelector('.fixed.text-smoke');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      if (bgShape) {
+        bgShape.style.transform = `translateY(${scrolled * -0.1}px)`;
+      }
+    });
+  });
+</script>
 </body>
-</html>4
+</html>
